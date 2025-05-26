@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio - Windows 95</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MS+Sans+Serif:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+            background: #008080;
+            overflow: hidden;
+            height: 100vh;
+            cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAdgAAAHYBTnsmCAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFYSURBVCiRpZM9SwNBEIafgwQLwcJCG1sLwcJCG9tYWFhYWFhYWFhYWFhYWFhYWFhYWNjYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWNjYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhY'), auto;
+        }
+
+        .desktop {
+            width: 100vw;
+            height: 100vh;
+            background: #008080;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 25% 25%, #20B2AA 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, #48D1CC 0%, transparent 50%);
+        }
+
+        .desktop-icons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70px;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background 0.1s;
+        }
+
+        .desktop-icon:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .desktop-icon.selected {
+            background: rgba(0,0,139,0.3);
+            border: 1px dotted white;
+        }
+
+        .icon-image {
+            width: 32px;
+            height: 32px;
+            background: #C0C0C0;
+            border: 2px outset #C0C0C0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .icon-label {
+            color: white;
+            font-size: 10px;
+            text-align: center;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+            word-wrap: break-word;
+            line-height: 1.2;
+        }
+
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #C0C0C0;
+            border-top: 1px solid #DFDFDF;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .start-button {
+            height: 24px;
+            padding: 0 8px;
+            margin: 3px;
+            background: #C0C0C0;
+            border: 1px outset #C0C0C0;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .start-button:active {
+            border: 1px inset #C0C0C0;
+        }
+
+        .start-logo {
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(45deg, #FF0000, #FFFF00, #00FF00, #0000FF);
+            font-size: 10px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .taskbar-separator {
+            width: 2px;
+            height: 24px;
+            background: #808080;
+            margin: 0 4px;
+            border-left: 1px solid #404040;
+            border-right: 1px solid #DFDFDF;
+        }
+
+        .clock {
+            margin-left: auto;
+            margin-right: 8px;
+            padding: 4px;
+            border: 1px inset #C0C0C0;
+            font-size: 10px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .window {
+            position: absolute;
+            background: #C0C0C0;
+            border: 2px outset #C0C0C0;
+            min-width: 300px;
+            min-height: 200px;
+            display: none;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .window.active {
+            z-index: 100;
+        }
+
+        .window-header {
+            height: 18px;
+            background: linear-gradient(90deg, #0000FF 0%, #0080FF 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 4px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: move;
+            user-select: none;
+        }
+
+        .window-header.inactive {
+            background: linear-gradient(90deg, #808080 0%, #A0A0A0 100%);
+        }
+
+        .window-title {
+            flex: 1;
+            padding-left: 4px;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .window-control {
+            width: 16px;
+            height: 14px;
+            background: #C0C0C0;
+            border: 1px outset #C0C0C0;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: black;
+            font-family: 'Marlett', sans-serif;
+        }
+
+        .window-control:active {
+            border: 1px inset #C0C0C0;
+        }
+
+        .window-content {
+            padding: 8px;
+            height: calc(100% - 18px);
+            overflow: auto;
+            background: white;
+        }
+
+        .menu-bar {
+            background: #C0C0C0;
+            border-bottom: 1px solid #808080;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        .menu-item {
+            padding: 2px 8px;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background: #0000FF;
+            color: white;
+        }
+
+        .about-content {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: #F0F0F0;
+            padding: 8px;
+            border: 1px inset #C0C0C0;
+            text-align: center;
+            font-size: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background: #C0C0C0;
+            border: 1px inset #C0C0C0;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0000FF, #0080FF);
+            transition: width 2s ease-in-out;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            font-family: 'Courier New', monospace;
+        }
+
+        .boot-logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #FF0000, #FFFF00, #00FF00, #0000FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .boot-text {
+            font-size: 14px;
+            margin: 5px 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 20px;
+            border: 2px solid #C0C0C0;
+            margin: 20px 0;
+            background: #000080;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-fill {
+            height: 100%;
+            background: repeating-linear-gradient(
+                90deg,
+                #0000FF 0px,
+                #0080FF 10px,
+                #00FFFF 20px,
+                #0080FF 30px,
+                #0000FF 40px
+            );
+            width: 0%;
+            animation: loading 3s ease-in-out forwards;
+        }
+
+        @keyframes loading {
+            to { width: 100%; }
+        }
+
+        .portfolio-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px inset #C0C0C0;
+            background: #F0F0F0;
+        }
+
+        .project-item {
+            background: white;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #C0C0C0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .project-item:hover {
+            background: #E0E0FF;
+            transform: translateX(5px);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-input {
+            padding: 4px;
+            border: 1px inset #C0C0C0;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+        }
+
+        .form-button {
+            padding: 8px 16px;
+            background: #C0C0C0;
+            border: 1px outset #C0C0C0;
+            cursor: pointer;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+        }
+
+        .form-button:active {
+            border: 1px inset #C0C0C0;
+        }
+
+        .sound-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(192, 192, 192, 0.8);
+            border: 1px outset #C0C0C0;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 10px;
+            z-index: 1001;
+        }
+
+        .easter-egg {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #FF0000;
+            border-radius: 50%;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-logo">Windows 95</div>
+        <div class="boot-text" style="animation-delay: 0.5s;">Portfolio Edition v1.0</div>
+        <div class="boot-text" style="animation-delay: 1s;">Initialisation du système...</div>
+        <div class="boot-text" style="animation-delay: 1.5s;">Chargement des compétences...</div>
+        <div class="boot-text" style="animation-delay: 2s;">Préparation de l'interface...</div>
+        <div class="loading-bar" style="animation-delay: 2.5s;">
+            <div class="loading-fill"></div>
+        </div>
+    </div>
+
+    <div class="sound-toggle" onclick="toggleSound()">🔊 Son</div>
+
+    <div class="desktop" id="desktop">
+        <canvas class="matrix-bg" id="matrixCanvas"></canvas>
+        
+        <div class="desktop-icons">
+            <div class="desktop-icon" ondblclick="openWindow('aboutWindow')">
+                <div class="icon-image">👤</div>
+                <div class="icon-label">À propos</div>
+            </div>
+            <div class="desktop-icon" ondblclick="openWindow('skillsWindow')">
+                <div class="icon-image">🛠️</div>
+                <div class="icon-label">Compétences</div>
+            </div>
+            <div class="desktop-icon" ondblclick="openWindow('portfolioWindow')">
+                <div class="icon-image">💼</div>
+                <div class="icon-label">Portfolio</div>
+            </div>
+            <div class="desktop-icon" ondblclick="openWindow('contactWindow')">
+                <div class="icon-image">📧</div>
+                <div class="icon-label">Contact</div>
+            </div>
+            <div class="desktop-icon" ondblclick="openWindow('gameWindow')">
+                <div class="icon-image">🎮</div>
+                <div class="icon-label">Mini-Jeu</div>
+            </div>
+        </div>
+
+        <!-- Easter Eggs -->
+        <div class="easter-egg" style="top: 200px; right: 100px;" onclick="playSound('ding')"></div>
+        <div class="easter-egg" style="bottom: 100px; left: 150px;" onclick="showSecretMessage()"></div>
+    </div>
+
+    <!-- Windows -->
+    <div class="window" id="aboutWindow" style="top: 100px; left: 100px; width: 400px; height: 300px;">
+        <div class="window-header">
+            <div class="window-title">À propos de moi</div>
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow('aboutWindow')">_</div>
+                <div class="window-control" onclick="closeWindow('aboutWindow')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="about-content">
+                <div class="profile-pic">👨‍💻</div>
+                <h2>Développeur Full-Stack</h2>
+                <p style="margin: 15px 0;">Passionné par la création d'expériences numériques exceptionnelles depuis l'ère du dial-up !</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%" id="experienceBar"></div>
+                </div>
+                <p style="font-size: 10px;">Niveau d'expérience : Expert</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="skillsWindow" style="top: 120px; left: 150px; width: 450px; height: 350px;">
+        <div class="window-header">
+            <div class="window-title">Mes Compétences</div>
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow('skillsWindow')">_</div>
+                <div class="window-control" onclick="closeWindow('skillsWindow')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="skills-grid">
+                <div class="skill-item">JavaScript ES6+</div>
+                <div class="skill-item">React / Vue.js</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">SQL / NoSQL</div>
+                <div class="skill-item">Docker</div>
+                <div class="skill-item">AWS / Cloud</div>
+                <div class="skill-item">Git / DevOps</div>
+            </div>
+            <div class="portfolio-section">
+                <h3>Technologies Maîtrisées</h3>
+                <div style="margin-top: 10px;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <small>Frontend Development - 90%</small>
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <small>Backend Development - 85%</small>
+                </div>
+                <div style="margin-top: 10px;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <small>DevOps & Cloud - 80%</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="portfolioWindow" style="top: 140px; left: 250px; width: 500px; height: 400px;">
+        <div class="window-header">
+            <div class="window-title">Portfolio - Mes Projets</div>
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow('portfolioWindow')">_</div>
+                <div class="window-control" onclick="closeWindow('portfolioWindow')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="portfolio-section">
+                <h3>🚀 Projets Récents</h3>
+                <div class="project-item" onclick="showProjectDetails('E-Commerce Platform')">
+                    <strong>Plateforme E-Commerce</strong><br>
+                    <small>React, Node.js, MongoDB - Solution complète de vente en ligne</small>
+                </div>
+                <div class="project-item" onclick="showProjectDetails('Data Analytics Dashboard')">
+                    <strong>Dashboard Analytics</strong><br>
+                    <small>Vue.js, Python, PostgreSQL - Visualisation de données en temps réel</small>
+                </div>
+                <div class="project-item" onclick="showProjectDetails('Mobile App')">
+                    <strong>Application Mobile</strong><br>
+                    <small>React Native, Firebase - App de productivité multi-plateforme</small>
+                </div>
+                <div class="project-item" onclick="showProjectDetails('AI Chatbot')">
+                    <strong>Chatbot IA</strong><br>
+                    <small>Python, NLP, Docker - Assistant virtuel intelligent</small>
+                </div>
+            </div>
+            <div class="portfolio-section">
+                <h3>🏆 Réalisations</h3>
+                <ul style="margin-left: 20px;">
+                    <li>+50 projets développés</li>
+                    <li>Certification AWS Solutions Architect</li>
+                    <li>Speaker dans 3 conférences tech</li>
+                    <li>Contributeur Open Source</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="contactWindow" style="top: 160px; left: 350px; width: 400px; height: 350px;">
+        <div class="window-header">
+            <div class="window-title">Me Contacter</div>
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow('contactWindow')">_</div>
+                <div class="window-control" onclick="closeWindow('contactWindow')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="contact-form">
+                <div class="form-group">
+                    <label>Nom :</label>
+                    <input type="text" class="form-input" placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <label>Email :</label>
+                    <input type="email" class="form-input" placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Message :</label>
+                    <textarea class="form-input" rows="5" placeholder="Votre message..."></textarea>
+                </div>
+                <button class="form-button" onclick="sendMessage()">Envoyer</button>
+            </div>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #C0C0C0;">
+                <strong>Autres moyens de me joindre :</strong><br><br>
+                📧 email@monportfolio.com<br>
+                💼 LinkedIn: /in/monprofil<br>
+                🐙 GitHub: /monusername<br>
+                📱 +33 6 12 34 56 78
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="gameWindow" style="top: 180px; left: 450px; width: 350px; height: 300px;">
+        <div class="window-header">
+            <div class="window-title">Snake Game 95</div>
+            <div class="window-controls">
+                <div class="window-control" onclick="minimizeWindow('gameWindow')">_</div>
+                <div class="window-control" onclick="closeWindow('gameWindow')">×</div>
+            </div>
+        </div>
+        <div class="window-content" style="text-align: center;">
+            <div style="margin: 20px 0;">Score: <span id="score">0</span></div>
+            <canvas id="gameCanvas" width="300" height="200" style="border: 1px solid #000; background: #F0F0F0;"></canvas>
+            <div style="margin-top: 15px;">
+                <button class="form-button" onclick="startGame()">Nouvelle Partie</button>
+                <div style="margin-top: 10px; font-size: 10px;">
+                    Utilisez les flèches pour jouer
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <div class="start-button" onclick="showStartMenu()">
+            <div class="start-logo">⊞</div>
+            Démarrer
+        </div>
+        <div class="taskbar-separator"></div>
+        <div class="clock" id="clock">12:00</div>
+    </div>
+
+    <script>
+        let soundEnabled = true;
+        let windowZIndex = 100;
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+        let activeWindow = null;
+
+        // Boot sequence
+        setTimeout(() => {
+            document.getElementById('bootScreen').style.display = 'none';
+            playStartupSound();
+            startMatrixEffect();
+            updateClock();
+            setInterval(updateClock, 1000);
+            
+            // Animate experience bar
+            setTimeout(() => {
+                document.getElementById('experienceBar').style.width = '95%';
+            }, 1000);
+        }, 5500);
+
+        function playStartupSound() {
+            if (soundEnabled) {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                playBeep(audioContext, 800, 0.1, 0.1);
+                setTimeout(() => playBeep(audioContext, 600, 0.1, 0.1), 200);
+                setTimeout(() => playBeep(audioContext, 400, 0.2, 0.1), 400);
+            }
+        }
+
+        function playSound(type) {
+            if (!soundEnabled) return;
+            
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            switch(type) {
+                case 'click':
+                    playBeep(audioContext, 1000, 0.05, 0.1);
+                    break;
+                case 'ding':
+                    playBeep(audioContext, 800, 0.1, 0.2);
+                    break;
+                case 'error':
+                    playBeep(audioContext, 200, 0.3, 0.3);
+                    break;
+            }
+        }
+
+        function playBeep(audioContext, frequency, duration, volume) {
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'square';
+            
+            gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        }
+
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.querySelector('.sound-toggle').innerHTML = soundEnabled ? '🔊 Son' : '🔇 Muet';
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('fr-FR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            document.getElementById('clock').textContent = timeString;
+        }
+
+        function openWindow(windowId) {
+            playSound('click');
+            const window = document.getElementById(windowId);
+            window.style.display = 'block';
+            window.style.zIndex = ++windowZIndex;
+            setActiveWindow(window);
+        }
+
+        function closeWindow(windowId) {
+            playSound('click');
+            document.getElementById(windowId).style.display = 'none';
+        }
+
+        function minimizeWindow(windowId) {
+            playSound('click');
+            document.getElementById(windowId).style.display = 'none';
+        }
+
+        function setActiveWindow(window) {
+            // Remove active class from all windows
+            document.querySelectorAll('.window').forEach(w => {
+                w.classList.remove('active');
+                w.querySelector('.window-header').classList.add('inactive');
+            });
+            
+            // Set active window
+            window.classList.add('active');
+            window.querySelector('.window-header').classList.remove('inactive');
+            activeWindow = window;
+        }
+
+        function showProjectDetails(projectName) {
+            playSound('ding');
+            alert(`Détails du projet: ${projectName}\n\nCe projet démontre mes compétences en développement moderne avec les dernières technologies et bonnes pratiques.`);
+        }
+
+        function sendMessage() {
+            playSound('ding');
+            alert('Message envoyé avec succès!\n\nMerci pour votre intérêt. Je vous répondrai dans les plus brefs délais.');
+        }
+
+        function showSecretMessage() {
+            playSound('ding');
+            alert('🎉 Easter Egg trouvé!\n\nFélicitations ! Vous avez découvert un secret. Vous êtes quelqu\'un d\'attentif aux détails !');
+        }
+
+        function showStartMenu() {
+            playSound('click');
+            alert('Menu Démarrer\n\n• Portfolio\n• Compétences\n• Projets\n• Contact\n• À propos\n\nDouble-cliquez sur les icônes du bureau pour naviguer !');
+        }
+
+        // Matrix background effect
+        function startMatrixEffect() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+            const matrixArray = matrix.split("");
+            
+            const fontSize = 10;
+            const columns = canvas.width / fontSize;
+            
+            const drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+            
+            function draw() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0F0';
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 35);
+        }
+
+        // Snake Game
+        let snake = [{x: 150, y: 100}];
+        let food = {x: 200, y: 150};
+        let dx = 10;
+        let dy = 0;
+        let score = 0;
+        let gameRunning = false;
+
+        function startGame() {
+            snake = [{x: 150, y: 100}];
+            food = generateFood();
+            dx = 10;
+            dy = 0;
+            score = 0;
+            gameRunning = true;
+            document.getElementById('score').textContent = score;
+            gameLoop();
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            clearCanvas();
+            moveSnake();
+            drawSnake();
+            drawFood();
+            
+            setTimeout(gameLoop, 150);
+        }
+
+        function clearCanvas() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#F0F0F0';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function moveSnake() {
+            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+            
+            // Check collision with walls
+            if (head.x < 0 || head.x >= 300 || head.y < 0 || head.y >= 200) {
+                gameRunning = false;
+                playSound('error');
+                alert('Game Over! Score: ' + score);
+                return;
+            }
+            
+            // Check collision with self
+            for (let segment of snake) {
+                if (head.x === segment.x && head.y === segment.y) {
+                    gameRunning = false;
+                    playSound('error');
+                    alert('Game Over! Score: ' + score);
+                    return;
+                }
+            }
+            
+            snake.unshift(head);
+            
+            // Check if food eaten
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                document.getElementById('score').textContent = score;
+                food = generateFood();
+                playSound('ding');
+            } else {
+                snake.pop();
+            }
+        }
+
+        function drawSnake() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#008000';
+            
+            for (let segment of snake) {
+                ctx.fillRect(segment.x, segment.y, 10, 10);
+            }
+        }
+
+        function drawFood() {
+            const canvas = document.getElementById('gameCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#FF0000';
+            ctx.fillRect(food.x, food.y, 10, 10);
+        }
+
+        function generateFood() {
+            return {
+                x: Math.floor(Math.random() * 30) * 10,
+                y: Math.floor(Math.random() * 20) * 10
+            };
+        }
+
+        // Keyboard controls for snake
+        document.addEventListener('keydown', (e) => {
+            if (!gameRunning) return;
+            
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (dy === 0) { dx = 0; dy = -10; }
+                    break;
+                case 'ArrowDown':
+                    if (dy === 0) { dx = 0; dy = 10; }
+                    break;
+                case 'ArrowLeft':
+                    if (dx === 0) { dx = -10; dy = 0; }
+                    break;
+                case 'ArrowRight':
+                    if (dx === 0) { dx = 10; dy = 0; }
+                    break;
+            }
+        });
+
+        // Window dragging functionality
+        document.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('window-header')) {
+                isDragging = true;
+                activeWindow = e.target.closest('.window');
+                setActiveWindow(activeWindow);
+                
+                const rect = activeWindow.getBoundingClientRect();
+                dragOffset.x = e.clientX - rect.left;
+                dragOffset.y = e.clientY - rect.top;
+                
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging && activeWindow) {
+                const x = e.clientX - dragOffset.x;
+                const y = e.clientY - dragOffset.y;
+                
+                activeWindow.style.left = Math.max(0, Math.min(x, window.innerWidth - activeWindow.offsetWidth)) + 'px';
+                activeWindow.style.top = Math.max(0, Math.min(y, window.innerHeight - activeWindow.offsetHeight - 30)) + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            activeWindow = null;
+        });
+
+        // Window focus handling
+        document.addEventListener('mousedown', (e) => {
+            const window = e.target.closest('.window');
+            if (window) {
+                setActiveWindow(window);
+            }
+        });
+
+        // Desktop icon selection
+        document.querySelectorAll('.desktop-icon').forEach(icon => {
+            icon.addEventListener('click', (e) => {
+                document.querySelectorAll('.desktop-icon').forEach(i => i.classList.remove('selected'));
+                icon.classList.add('selected');
+                playSound('click');
+            });
+        });
+
+        // Add some random floating elements
+        function createFloatingElement() {
+            const element = document.createElement('div');
+            element.innerHTML = Math.random() > 0.5 ? '💻' : '🚀';
+            element.style.position = 'absolute';
+            element.style.fontSize = '20px';
+            element.style.left = Math.random() * window.innerWidth + 'px';
+            element.style.top = '-30px';
+            element.style.zIndex = '1';
+            element.style.animation = 'float 10s linear forwards';
+            element.style.opacity = '0.3';
+            
+            document.body.appendChild(element);
+            
+            setTimeout(() => {
+                document.body.removeChild(element);
+            }, 10000);
+        }
+
+        // Add CSS for floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                to {
+                    transform: translateY(${window.innerHeight + 50}px) rotate(360deg);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create floating elements periodically
+        setInterval(createFloatingElement, 5000);
+
+        // Welcome message
+        setTimeout(() => {
+            if (confirm('Bienvenue dans mon Portfolio Windows 95!\n\nVoulez-vous faire un tour guidé ?')) {
+                setTimeout(() => openWindow('aboutWindow'), 500);
+                setTimeout(() => openWindow('skillsWindow'), 1500);
+                setTimeout(() => openWindow('portfolioWindow'), 2500);
+            }
+        }, 6000);
+    </script>
+</body>
+</html>
