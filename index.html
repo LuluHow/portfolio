@@ -5,1420 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUDOVIC.HOREM - DEVELOPPEUR</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Press Start 2P', monospace;
-            background: var(--bg-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            font-size: 12px;
-            overflow-x: hidden;
-            transition: all 0.3s ease;
-        }
-
-        :root {
-            --bg-dark: #2a2a2a;
-            --bg-light: #3a3a3a;
-            --text-primary: #d4d4aa;
-            --text-secondary: #a5a58d;
-            --accent-blue: #6daa2c;
-            --accent-green: #9bbc0f;
-            --accent-yellow: #ffd700;
-            --accent-red: #d3869b;
-            --border: #5a5a5a;
-            --tv-screen: #1a4a3a;
-            --tv-glow: #00ff41;
-        }
-
-        [data-theme="gameboy"] {
-            --bg-dark: #9bbc0f;
-            --bg-light: #8bac0f;
-            --text-primary: #0f380f;
-            --text-secondary: #306230;
-            --accent-blue: #0f380f;
-            --accent-green: #0f380f;
-            --accent-yellow: #306230;
-            --accent-red: #0f380f;
-            --border: #0f380f;
-        }
-
-        [data-theme="c64"] {
-            --bg-dark: #352879;
-            --bg-light: #6c5ce7;
-            --text-primary: #a4c5ff;
-            --text-secondary: #8fa5d4;
-            --accent-blue: #a4c5ff;
-            --accent-green: #00ff41;
-            --accent-yellow: #ffe066;
-            --accent-red: #ff4757;
-            --border: #a4c5ff;
-        }
-
-        [data-theme="apple2"] {
-            --bg-dark: #000000;
-            --bg-light: #1a1a1a;
-            --text-primary: #00ff41;
-            --text-secondary: #00cc33;
-            --accent-blue: #00ff41;
-            --accent-green: #00ff41;
-            --accent-yellow: #00ff41;
-            --accent-red: #00ff41;
-            --border: #00ff41;
-        }
-
-        /* Nouvelle Boot Screen avec nom au centre */
-        .boot-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-dark);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-
-        .boot-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .boot-name {
-            color: var(--accent-yellow);
-            font-size: 24px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
-            position: relative;
-            opacity: 0;
-            transform: scale(0.8);
-            filter: blur(10px) contrast(0.3);
-            animation: bootNameAppear 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .boot-name.moving-up {
-            animation: bootNameMoveUp 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes bootNameAppear {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-                filter: blur(10px) contrast(0.3);
-                text-shadow: 1px 1px 0px rgba(0,0,0,0.8);
-            }
-            30% {
-                opacity: 0.5;
-                transform: scale(1.1);
-                filter: blur(6px) contrast(0.6);
-                text-shadow: 
-                    1px 1px 0px rgba(0,0,0,0.8),
-                    0 0 10px rgba(255, 215, 0, 0.4);
-            }
-            60% {
-                opacity: 0.8;
-                transform: scale(1.05);
-                filter: blur(2px) contrast(0.9);
-                text-shadow: 
-                    1px 1px 0px rgba(0,0,0,0.8),
-                    0 0 15px rgba(255, 215, 0, 0.7);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-                filter: none;
-                text-shadow: 
-                    1px 1px 0px rgba(0,0,0,0.8),
-                    0 0 20px rgba(255, 215, 0, 1),
-                    0 0 30px rgba(255, 215, 0, 0.8);
-            }
-        }
-
-        @keyframes bootNameMoveUp {
-            0% {
-                transform: scale(1) translateY(0);
-            }
-            100% {
-                transform: scale(0.67) translateY(-60vh);
-            }
-        }
-
-        /* Computer Screen */
-        .computer-screen {
-            max-width: 800px;
-            margin: 20px auto;
-            background: var(--bg-dark);
-            border: 8px solid var(--border);
-            border-radius: 12px;
-            box-shadow: 
-                0 0 30px rgba(0,0,0,0.7),
-                inset 0 0 20px rgba(0,0,0,0.3);
-            position: relative;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.8s ease;
-        }
-
-        .computer-screen.loaded {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .computer-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0,0,0,0.1) 2px,
-                    rgba(0,0,0,0.1) 4px
-                );
-            pointer-events: none;
-            border-radius: 4px;
-        }
-
-        /* Header */
-        .header {
-            background: var(--bg-light);
-            padding: 16px;
-            border-bottom: 2px solid var(--border);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.8s ease;
-        }
-
-        .header.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .system-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .computer-name {
-            color: var(--accent-green);
-            font-size: 10px;
-        }
-
-        .system-status {
-            display: flex;
-            gap: 12px;
-            font-size: 8px;
-        }
-
-        .status-item {
-            color: var(--text-secondary);
-        }
-
-        .title-section {
-            text-align: center;
-            margin: 16px 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .main-title {
-            color: var(--accent-yellow);
-            font-size: 16px;
-            margin-bottom: 8px;
-            text-shadow: 
-                1px 1px 0px rgba(0,0,0,0.8),
-                0 0 20px rgba(255, 215, 0, 1),
-                0 0 30px rgba(255, 215, 0, 0.8);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        /* Scanlines améliorées avec bordures arrondies */
-        .main-title::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                transparent 20%,
-                rgba(0, 255, 65, 0.1) 40%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(0, 255, 65, 0.1) 60%,
-                transparent 80%,
-                transparent 100%
-            );
-            border-radius: 2px;
-            z-index: 2;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .main-title::after {
-            content: '';
-            position: absolute;
-            top: -100%;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(
-                90deg,
-                transparent 0%,
-                transparent 20%,
-                rgba(0, 255, 65, 0.6) 40%,
-                rgba(255, 255, 255, 0.8) 50%,
-                rgba(0, 255, 65, 0.6) 60%,
-                transparent 80%,
-                transparent 100%
-            );
-            box-shadow: 
-                0 0 4px rgba(0, 255, 65, 0.4),
-                0 0 8px rgba(0, 255, 65, 0.2);
-            border-radius: 50%;
-            z-index: 3;
-            opacity: 0;
-        }
-
-        /* Animation de dépixelisation déclenchée manuellement */
-        .main-title.depixelizing {
-            filter: blur(6px) contrast(0.5);
-            transform: scale(1.1);
-            opacity: 0.7;
-            animation: depixelizeTitle 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .main-title.depixelizing::before {
-            opacity: 1;
-            animation: scanlineHorizontal 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        .main-title.depixelizing::after {
-            opacity: 1;
-            animation: scanlineVertical 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes depixelizeTitle {
-            0% {
-                filter: blur(6px) contrast(0.5) saturate(0.6);
-                transform: scale(1.1);
-                opacity: 0.7;
-            }
-            50% {
-                filter: blur(3px) contrast(0.8) saturate(0.8);
-                transform: scale(1.05);
-                opacity: 0.85;
-            }
-            90% {
-                filter: blur(0.5px) contrast(1) saturate(1);
-                transform: scale(1.02);
-                opacity: 0.95;
-            }
-            100% {
-                filter: none;
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes scanlineHorizontal {
-            0% {
-                left: -100%;
-                opacity: 0;
-            }
-            15% {
-                left: -40%;
-                opacity: 1;
-            }
-            85% {
-                left: 40%;
-                opacity: 1;
-            }
-            100% {
-                left: 100%;
-                opacity: 0;
-            }
-        }
-
-        @keyframes scanlineVertical {
-            0% {
-                top: -100%;
-                opacity: 0;
-                height: 1px;
-            }
-            10% {
-                top: -20%;
-                opacity: 1;
-                height: 1px;
-            }
-            90% {
-                top: 80%;
-                opacity: 1;
-                height: 1px;
-            }
-            100% {
-                top: 120%;
-                opacity: 0;
-                height: 1px;
-            }
-        }
-
-        /* Animation finale - pulse propre */
-        .main-title.complete {
-            filter: none !important;
-            animation: enhancedPulse 2s ease-in-out infinite;
-        }
-
-        .main-title.complete::before,
-        .main-title.complete::after {
-            display: none;
-        }
-
-        @keyframes enhancedPulse {
-            0%, 100% { 
-                transform: scale(1);
-                text-shadow: 
-                    1px 1px 0px rgba(0,0,0,0.8),
-                    0 0 20px rgba(255, 215, 0, 1),
-                    0 0 30px rgba(255, 215, 0, 0.8),
-                    0 0 40px rgba(255, 215, 0, 0.6);
-            }
-            50% { 
-                transform: scale(1.05);
-                text-shadow: 
-                    1px 1px 0px rgba(0,0,0,0.8),
-                    0 0 25px rgba(255, 215, 0, 1),
-                    0 0 35px rgba(255, 215, 0, 0.9),
-                    0 0 45px rgba(255, 215, 0, 0.7),
-                    0 0 55px rgba(255, 215, 0, 0.5);
-            }
-        }
-
-        .audio-toggle {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            padding: 4px 8px;
-            font-size: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 2;
-        }
-
-        .audio-toggle:hover {
-            color: var(--accent-green);
-            border-color: var(--accent-green);
-        }
-
-        .audio-toggle.active {
-            color: var(--accent-green);
-            background: var(--bg-light);
-        }
-
-        /* Navigation */
-        .navigation {
-            background: var(--bg-light);
-            border-bottom: 2px solid var(--border);
-            padding: 8px 16px;
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: all 0.8s ease;
-        }
-
-        .navigation.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .nav-item {
-            background: var(--bg-dark);
-            border: 2px solid var(--border);
-            color: var(--text-primary);
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 10px;
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .nav-item:hover {
-            background: var(--accent-blue);
-            color: var(--bg-dark);
-            transform: translateY(-1px);
-        }
-
-        .nav-item.active {
-            background: var(--accent-green);
-            color: var(--bg-dark);
-            box-shadow: inset 2px 2px 0px rgba(0,0,0,0.3);
-        }
-
-        .nav-item::before {
-            content: '▶ ';
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .nav-item.active::before {
-            opacity: 1;
-        }
-
-        /* Content */
-        .content {
-            padding: 20px;
-            min-height: 400px;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-        }
-
-        .content.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .sections-container {
-            display: flex;
-            width: 400%;
-            height: 100%;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .section {
-            width: 25%;
-            flex-shrink: 0;
-            opacity: 1;
-        }
-
-        .sections-container[data-active="home"] { transform: translateX(0%); }
-        .sections-container[data-active="about"] { transform: translateX(-25%); }
-        .sections-container[data-active="projects"] { transform: translateX(-50%); }
-        .sections-container[data-active="contact"] { transform: translateX(-75%); }
-
-        .transition-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-dark);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 10;
-            transition: opacity 0.2s ease;
-        }
-
-        .transition-overlay.active {
-            opacity: 0.8;
-            background: repeating-linear-gradient(
-                90deg,
-                var(--bg-dark),
-                var(--bg-dark) 2px,
-                transparent 2px,
-                transparent 4px
-            );
-        }
-
-        /* Home Section */
-        .hero-section {
-            text-align: center;
-            margin: 20px 0 30px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 0.2s;
-            position: relative;
-        }
-
-        .hero-title {
-            color: var(--accent-yellow);
-            font-size: 18px;
-            margin-bottom: 12px;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-title.typing {
-            animation: none;
-        }
-
-        .hero-title::after {
-            content: '█';
-            color: var(--accent-green);
-            animation: blink 1s infinite;
-            margin-left: 2px;
-        }
-
-        .hero-title.typing-complete::after {
-            display: none;
-        }
-
-        .hero-title.typing-complete {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        /* TV Container - État éteint/allumé */
-        .tv-container {
-            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
-            border: 4px solid var(--border);
-            border-radius: 20px;
-            padding: 30px 20px 20px;
-            margin: 20px 0;
-            position: relative;
-            box-shadow: 
-                0 0 30px rgba(0,0,0,0.5),
-                inset 0 0 20px rgba(0,0,0,0.3);
-        }
-
-        .tv-container::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 8px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-yellow), var(--accent-green));
-            border-radius: 4px;
-        }
-
-        .tv-container::after {
-            content: 'RETRO-TV™';
-            position: absolute;
-            bottom: 8px;
-            right: 20px;
-            font-size: 6px;
-            color: var(--text-secondary);
-            opacity: 0.7;
-        }
-
-        /* Bouton d'alimentation de la TV */
-        .tv-power-button {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            background: var(--bg-dark);
-            border: 2px solid var(--border);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .tv-power-button:hover {
-            border-color: var(--accent-green);
-            color: var(--accent-green);
-            box-shadow: 0 0 10px rgba(155, 188, 15, 0.3);
-        }
-
-        .tv-power-button.on {
-            color: var(--accent-green);
-            border-color: var(--accent-green);
-            background: rgba(155, 188, 15, 0.1);
-            box-shadow: 0 0 15px rgba(155, 188, 15, 0.5);
-        }
-
-        .tv-screen {
-            background: var(--tv-screen);
-            border: 3px solid #1a1a1a;
-            border-radius: 8px;
-            padding: 20px;
-            position: relative;
-            min-height: 400px;
-            overflow: hidden;
-            box-shadow: 
-                inset 0 0 30px rgba(0,255,65,0.1),
-                0 0 20px rgba(0,255,65,0.05);
-            transition: all 0.5s ease;
-        }
-
-        /* État TV éteinte */
-        .tv-screen.off {
-            background: #000000;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.9);
-        }
-
-        .tv-screen.off::before {
-            display: none;
-        }
-
-        .tv-off-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #333;
-            font-size: 8px;
-            text-align: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .tv-screen.off .tv-off-message {
-            opacity: 1;
-        }
-
-        .tv-screen::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0,255,65,0.03) 2px,
-                    rgba(0,255,65,0.03) 4px
-                );
-            pointer-events: none;
-            animation: tvScanlines 0.1s linear infinite;
-        }
-
-        @keyframes tvScanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
-        }
-
-        .tv-static {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.01) 1px, transparent 1px),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.01) 1px, transparent 1px),
-                radial-gradient(circle at 40% 90%, rgba(255,255,255,0.01) 1px, transparent 1px);
-            animation: tvStatic 0.1s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes tvStatic {
-            0% { opacity: 0.02; }
-            50% { opacity: 0.05; }
-            100% { opacity: 0.02; }
-        }
-
-        .projects-carousel {
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-
-        .tv-screen.off .projects-carousel {
-            opacity: 0;
-        }
-
-        .project-slides {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            animation: tvGlow 3s ease-in-out infinite;
-        }
-
-        .project-slide.active {
-            display: block;
-            opacity: 1;
-        }
-
-        @keyframes tvGlow {
-            0%, 100% { filter: brightness(1) contrast(1); }
-            50% { filter: brightness(1.1) contrast(1.1); }
-        }
-
-        .project-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: center;
-            color: var(--tv-glow);
-        }
-
-        .project-image-container {
-            text-align: center;
-            position: relative;
-        }
-
-        .project-image-container img {
-            max-width: 100%;
-            max-height: 200px;
-            border: 2px solid var(--tv-glow);
-            border-radius: 4px;
-            filter: 
-                brightness(1.2) 
-                contrast(1.3) 
-                sepia(0.1);
-            box-shadow: 0 0 20px rgba(0,255,65,0.3);
-        }
-
-        .project-info h3 {
-            color: var(--accent-yellow);
-            font-size: 14px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255,215,0,0.5);
-        }
-
-        .project-tech {
-            color: var(--accent-green);
-            font-size: 8px;
-            margin-bottom: 12px;
-            padding: 4px 8px;
-            background: rgba(0,255,65,0.1);
-            border: 1px solid rgba(0,255,65,0.3);
-            display: inline-block;
-        }
-
-        .project-description {
-            font-size: 9px;
-            line-height: 1.6;
-            margin-bottom: 12px;
-            color: var(--tv-glow);
-        }
-
-        .project-status {
-            display: flex;
-            justify-content: space-between;
-            font-size: 8px;
-        }
-
-        .status-badge {
-            background: rgba(0,255,65,0.2);
-            color: var(--tv-glow);
-            padding: 2px 6px;
-            border: 1px solid rgba(0,255,65,0.5);
-            animation: statusPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes statusPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(0,255,65,0.3); }
-            50% { box-shadow: 0 0 15px rgba(0,255,65,0.6); }
-        }
-
-        .progress-indicator {
-            color: var(--accent-yellow);
-        }
-
-        /* Navigation arrows - Repositionnées en bas */
-        .carousel-nav {
-            position: absolute;
-            bottom: -60px;
-            background: rgba(0,0,0,0.7);
-            border: 2px solid var(--tv-glow);
-            color: var(--tv-glow);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            z-index: 5;
-        }
-
-        .carousel-nav:hover {
-            background: rgba(0,255,65,0.2);
-            box-shadow: 0 0 20px rgba(0,255,65,0.5);
-            transform: scale(1.1);
-        }
-
-        .carousel-prev {
-            left: 30%;
-            transform: translateX(-50%);
-        }
-
-        .carousel-next {
-            right: 30%;
-            transform: translateX(50%);
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 80px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            background: rgba(0,255,65,0.3);
-            border: 1px solid var(--tv-glow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active,
-        .indicator:hover {
-            background: var(--tv-glow);
-            box-shadow: 0 0 10px rgba(0,255,65,0.7);
-        }
-
-        /* About section */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 24px;
-            margin: 20px 0;
-        }
-
-        .profile-card {
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            padding: 16px;
-            text-align: center;
-            position: relative;
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--accent-green);
-            margin: 0 auto 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            border: 2px solid var(--border);
-        }
-
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-name {
-            color: var(--accent-yellow);
-            font-size: 10px;
-            margin-bottom: 8px;
-        }
-
-        .profile-role {
-            color: var(--text-secondary);
-            font-size: 8px;
-            margin-bottom: 12px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .stat {
-            background: var(--bg-dark);
-            padding: 8px;
-            border: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .stat-value {
-            color: var(--accent-green);
-            font-size: 12px;
-            display: block;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 7px;
-            margin-top: 4px;
-        }
-
-        .skills-section {
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            padding: 16px;
-        }
-
-        .section-title {
-            color: var(--accent-yellow);
-            font-size: 10px;
-            margin-bottom: 16px;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 8px;
-        }
-
-        .skill-item {
-            margin-bottom: 12px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-
-        .skill-name {
-            color: var(--text-primary);
-            font-size: 8px;
-        }
-
-        .skill-level {
-            color: var(--accent-green);
-            font-size: 8px;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--bg-dark);
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: var(--accent-green);
-            transition: width 1s ease-out;
-            position: relative;
-        }
-
-        .skill-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 2px;
-            height: 100%;
-            background: var(--accent-yellow);
-            animation: blink 1s infinite;
-        }
-
-        /* Contact section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin: 20px 0;
-        }
-
-        .contact-form {
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            padding: 16px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-label {
-            color: var(--accent-green);
-            font-size: 8px;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            background: var(--bg-dark);
-            border: 2px solid var(--border);
-            color: var(--text-primary);
-            padding: 8px;
-            font-family: inherit;
-            font-size: 8px;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-        }
-
-        .form-textarea {
-            height: 80px;
-            resize: vertical;
-        }
-
-        .form-button {
-            background: var(--accent-green);
-            color: var(--bg-dark);
-            border: 2px solid var(--accent-green);
-            padding: 8px 16px;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 8px;
-            transition: all 0.2s ease;
-        }
-
-        .form-button:hover {
-            background: var(--bg-dark);
-            color: var(--accent-green);
-        }
-
-        .contact-info {
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            padding: 16px;
-        }
-
-        .contact-item {
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .contact-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .contact-label {
-            color: var(--accent-yellow);
-            font-size: 8px;
-            margin-bottom: 4px;
-        }
-
-        .contact-value {
-            color: var(--text-primary);
-            font-size: 8px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-light);
-            border-top: 2px solid var(--border);
-            padding: 16px;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 8px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease;
-        }
-
-        .footer.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Benefits section améliorée */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .benefit-card {
-            background: var(--bg-light);
-            border: 2px solid var(--border);
-            padding: 16px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .benefit-card:nth-child(1) { animation-delay: 0.6s; }
-        .benefit-card:nth-child(2) { animation-delay: 0.8s; }
-        .benefit-card:nth-child(3) { animation-delay: 1.0s; }
-        .benefit-card:nth-child(4) { animation-delay: 1.2s; }
-
-        .benefit-card:hover {
-            border-color: var(--accent-green);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        }
-
-        .benefit-icon {
-            font-size: 24px;
-            margin-bottom: 12px;
-            display: block;
-            color: var(--accent-green);
-            animation: float 3s ease-in-out infinite;
-            opacity: 0;
-            transform: scale(0);
-            transition: all 0.3s ease;
-        }
-
-        .benefit-icon.loaded {
-            opacity: 1;
-            transform: scale(1);
-            animation: iconPop 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55), float 3s ease-in-out infinite 0.6s;
-        }
-
-        @keyframes iconPop {
-            0% {
-                transform: scale(0);
-                filter: blur(4px) contrast(3);
-            }
-            50% {
-                transform: scale(1.3);
-                filter: blur(2px) contrast(2);
-            }
-            100% {
-                transform: scale(1);
-                filter: blur(0px) contrast(1);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .benefit-title {
-            color: var(--accent-yellow);
-            font-size: 10px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .benefit-desc {
-            color: var(--text-primary);
-            font-size: 8px;
-            line-height: 1.6;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            margin: 30px 0;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            animation-delay: 1.6s;
-        }
-
-        .cta-primary {
-            background: var(--accent-green);
-            color: var(--bg-dark);
-            border: 2px solid var(--accent-green);
-            padding: 12px 24px;
-            font-size: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 8px;
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .cta-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(0,0,0,0.1) 2px,
-                rgba(0,0,0,0.1) 4px
-            );
-            animation: scanlines 2s linear infinite;
-            pointer-events: none;
-        }
-
-        .cta-primary::after {
-            content: '█';
-            color: var(--bg-dark);
-            animation: blink 1s infinite;
-            margin-left: 4px;
-        }
-
-        @keyframes scanlines {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: var(--accent-green);
-            border: 2px solid var(--accent-green);
-            padding: 12px 24px;
-            font-size: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 0 8px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-secondary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(155,188,15,0.1) 2px,
-                rgba(155,188,15,0.1) 4px
-            );
-            animation: scanlines 3s linear infinite;
-            pointer-events: none;
-        }
-
-        .cta-secondary::after {
-            content: '█';
-            color: var(--accent-green);
-            animation: blink 1.2s infinite;
-            margin-left: 4px;
-        }
-
-        /* Effet ripple au clic */
-        .cta-ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            pointer-events: none;
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        .cta-primary:active,
-        .cta-secondary:active {
-            transform: translateY(1px);
-        }
-
-        /* Animations globales */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .computer-screen {
-                margin: 10px;
-                border: 4px solid var(--border);
-            }
-            
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .carousel-prev {
-                left: 20%;
-            }
-            
-            .carousel-next {
-                right: 20%;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-primary,
-            .cta-secondary {
-                display: block;
-                width: 100%;
-                margin: 8px 0;
-            }
-
-            .boot-name {
-                font-size: 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Nouvelle Boot Screen avec nom au centre -->
+    <!-- Boot Screen -->
     <div class="boot-screen" id="bootScreen">
         <div class="boot-name" id="bootName">{ Ludovic Horem }</div>
     </div>
 
-    <div class="computer-screen" id="mainScreen">
+    <div class="computer-screen scanlines fade-in" id="mainScreen">
         <!-- Header -->
-        <div class="header" id="header">
+        <div class="header fade-in" id="header">
             <div class="system-info">
                 <div class="computer-name">COMMODORE-DEV © 1985</div>
                 <div class="system-status">
@@ -1436,7 +33,7 @@
         </div>
 
         <!-- Navigation -->
-        <div class="navigation" id="navigation">
+        <div class="navigation fade-in" id="navigation">
             <div class="nav-menu">
                 <div class="nav-item active" data-section="home">HOME</div>
                 <div class="nav-item" data-section="about">ABOUT</div>
@@ -1445,11 +42,11 @@
             </div>
         </div>
 
-        <!-- Contenu avec transitions -->
-        <div class="content" id="content">
+        <!-- Content -->
+        <div class="content fade-in" id="content">
             <div class="transition-overlay" id="transitionOverlay"></div>
             <div class="sections-container" id="sectionsContainer" data-active="home">
-                <!-- Section Home -->
+                <!-- Home Section -->
                 <div class="section" id="home">
                     <div class="hero-section">
                         <h2 class="hero-title">TRANSFORMEZ VOS IDÉES EN RÉALITÉ</h2>
@@ -1483,17 +80,170 @@
                     </div>
 
                     <div class="cta-section">
-                        <button class="cta-primary" onclick="navigateToSection('contact')">DÉMARRER VOTRE PROJET</button>
-                        <button class="cta-secondary" onclick="navigateToSection('projects')">VOIR MES RÉALISATIONS</button>
+                        <button class="btn btn-primary cta-primary" onclick="navigateToSection('contact')">DÉMARRER VOTRE PROJET</button>
+                        <button class="btn btn-secondary cta-secondary" onclick="navigateToSection('projects')">VOIR MES RÉALISATIONS</button>
                     </div>
                 </div>
 
-                <!-- Section About -->
+                <!-- About Section -->
                 <div class="section" id="about">
                     <div class="about-grid">
-                        <div class="profile-card">
-                            <div class="avatar">
-                                <img style="height: 80px;" src="logo_lh.png" alt="LH">
+                        <div class="profile-card card">
+                            <div class="avatar-tv-screen">
+                                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                      <!-- Gradient pour l'écran -->
+                                      <radialGradient id="screenGradient" cx="50%" cy="50%" r="70%">
+                                        <stop offset="0%" style="stop-color:#2a4a3a;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#1a3a2a;stop-opacity:1" />
+                                      </radialGradient>
+                                      
+                                      <!-- Pattern pour les scanlines -->
+                                      <pattern id="scanlines" patternUnits="userSpaceOnUse" width="1" height="2">
+                                        <rect width="1" height="1" fill="rgba(0,255,65,0.1)"/>
+                                        <rect y="1" width="1" height="1" fill="rgba(0,0,0,0.1)"/>
+                                      </pattern>
+                                  
+                                    </defs>
+                                    
+                                    <!-- Corps de la télé -->
+                                    <rect x="5" y="10" width="110" height="90" rx="8" fill="#4a4a4a" stroke="#6a6a6a" stroke-width="2"/>
+                                    <rect x="3" y="8" width="114" height="94" rx="10" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+                                    
+                                    <!-- Grille métallique haut-parleur -->
+                                    <g opacity="0.6">
+                                      <circle cx="15" cy="25" r="1" fill="#2a2a2a"/>
+                                      <circle cx="18" cy="25" r="1" fill="#2a2a2a"/>
+                                      <circle cx="15" cy="28" r="1" fill="#2a2a2a"/>
+                                      <circle cx="18" cy="28" r="1" fill="#2a2a2a"/>
+                                    </g>
+                                    
+                                    <!-- Écran -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="url(#screenGradient)" stroke="#1a1a1a" stroke-width="1"/>
+                                    
+                                    <!-- Avatar pixellisé détaillé -->
+                                    <g transform="translate(18, 20)">
+                                      <!-- Arrière-plan cheveux -->
+                                      <rect x="20" y="8" width="44" height="12" fill="#4a2c17"/>
+                                      <rect x="24" y="4" width="36" height="8" fill="#4a2c17"/>
+                                      <rect x="28" y="2" width="28" height="4" fill="#4a2c17"/>
+                                      
+                                      <!-- Cheveux détaillés -->
+                                      <rect x="22" y="6" width="40" height="8" fill="#5d4037"/>
+                                      <rect x="26" y="4" width="32" height="6" fill="#5d4037"/>
+                                      <rect x="30" y="2" width="24" height="4" fill="#5d4037"/>
+                                      <!-- Mèches -->
+                                      <rect x="24" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="32" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="40" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="48" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="56" y="12" width="4" height="4" fill="#5d4037"/>
+                                      
+                                      <!-- Oreilles -->
+                                      <rect x="16" y="24" width="6" height="8" fill="#d4c4a8"/>
+                                      <rect x="62" y="24" width="6" height="8" fill="#d4c4a8"/>
+                                      <rect x="18" y="26" width="2" height="4" fill="#c4b498"/>
+                                      <rect x="64" y="26" width="2" height="4" fill="#c4b498"/>
+                                      
+                                      <!-- Visage base -->
+                                      <rect x="22" y="16" width="40" height="28" fill="#d4c4a8"/>
+                                      
+                                      <!-- Ombres visage -->
+                                      <rect x="22" y="16" width="2" height="28" fill="#c4b498"/>
+                                      <rect x="60" y="16" width="2" height="28" fill="#c4b498"/>
+                                      <rect x="22" y="42" width="40" height="2" fill="#c4b498"/>
+                                      
+                                      <!-- Sourcils -->
+                                      <rect x="28" y="20" width="8" height="2" fill="#4a2c17"/>
+                                      <rect x="48" y="20" width="8" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Yeux détaillés -->
+                                      <rect x="26" y="24" width="12" height="6" fill="#ffffff"/>
+                                      <rect x="46" y="24" width="12" height="6" fill="#ffffff"/>
+                                      <!-- Iris -->
+                                      <rect x="30" y="26" width="6" height="4" fill="#3e2723"/>
+                                      <rect x="50" y="26" width="6" height="4" fill="#3e2723"/>
+                                      <!-- Pupilles -->
+                                      <rect x="32" y="27" width="2" height="2" fill="#000000"/>
+                                      <rect x="52" y="27" width="2" height="2" fill="#000000"/>
+                                      <!-- Reflets -->
+                                      <rect x="31" y="26" width="1" height="1" fill="#ffffff"/>
+                                      <rect x="51" y="26" width="1" height="1" fill="#ffffff"/>
+                                      <!-- Paupières -->
+                                      <rect x="26" y="24" width="12" height="1" fill="#c4b498"/>
+                                      <rect x="46" y="24" width="12" height="1" fill="#c4b498"/>
+                                      
+                                      <!-- Nez détaillé -->
+                                      <rect x="38" y="32" width="8" height="6" fill="#c4b498"/>
+                                      <rect x="40" y="34" width="4" height="4" fill="#b4a488"/>
+                                      <rect x="38" y="36" width="2" height="2" fill="#a49478"/>
+                                      <rect x="44" y="36" width="2" height="2" fill="#a49478"/>
+                                      
+                                      <!-- Barbe très détaillée -->
+                                      <!-- Barbe principale -->
+                                      <rect x="20" y="44" width="44" height="12" fill="#5d4037"/>
+                                      <rect x="24" y="56" width="36" height="8" fill="#5d4037"/>
+                                      <rect x="28" y="64" width="28" height="6" fill="#5d4037"/>
+                                      <rect x="32" y="70" width="20" height="4" fill="#5d4037"/>
+                                      
+                                      <!-- Texture barbe -->
+                                      <rect x="22" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="26" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="30" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="34" y="50" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="38" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="42" y="52" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="46" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="50" y="50" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="54" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="58" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Moustache détaillée -->
+                                      <rect x="30" y="38" width="24" height="6" fill="#5d4037"/>
+                                      <rect x="32" y="40" width="20" height="4" fill="#4a2c17"/>
+                                      <rect x="34" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      <rect x="42" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      <rect x="46" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Bouche -->
+                                      <rect x="38" y="40" width="8" height="3" fill="#8d6e63"/>
+                                      <rect x="40" y="41" width="4" height="1" fill="#6d4c41"/>
+                                      
+                                    </g>
+                                    
+                                    <!-- Scanlines -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="url(#scanlines)" opacity="0.3"/>
+                                    
+                                  
+                                    
+                                    <!-- Boutons de la télé -->
+                                    <circle cx="112" cy="25" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <circle cx="112" cy="35" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <circle cx="112" cy="45" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <text x="109" y="27" font-size="2" fill="#2a2a2a">V</text>
+                                    <text x="108.5" y="37" font-size="2" fill="#2a2a2a">CH</text>
+                                    <text x="109" y="47" font-size="2" fill="#2a2a2a">P</text>
+                                    
+                                    <!-- Antenne -->
+                                    <line x1="10" y1="10" x2="5" y2="2" stroke="#6a6a6a" stroke-width="1"/>
+                                    <line x1="110" y1="10" x2="115" y2="2" stroke="#6a6a6a" stroke-width="1"/>
+                                    <circle cx="5" cy="2" r="1" fill="#8a8a8a"/>
+                                    <circle cx="115" cy="2" r="1" fill="#8a8a8a"/>
+                                    
+                                    <!-- Marque TV -->
+                                    <text x="60" y="106" font-size="3" fill="#6a6a6a" text-anchor="middle" opacity="0.7">RETRO-TV</text>
+                                    
+                                    <!-- Effet de lueur verte sur l'écran -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="rgba(0,255,65,0.05)" opacity="0.8">
+                                      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                                    </rect>
+                                    
+                                    <!-- Reflet sur l'écran -->
+                                    <ellipse cx="35" cy="35" rx="15" ry="8" fill="rgba(255,255,255,0.1)" opacity="0.6"/>
+                                    
+                                  
+                                  </svg>
+                                <div class="scanlines"></div>
                             </div>
                             <div class="profile-name">Ludovic Horem</div>
                             <div class="profile-role">DEVELOPER</div>
@@ -1584,7 +334,7 @@
                     </div>
                 </div>
 
-                <!-- Section Projects avec TV Screen -->
+                <!-- Projects Section -->
                 <div class="section" id="projects">
                     <h3 class="section-title">PROJECT ARCHIVE</h3>
                     
@@ -1595,12 +345,11 @@
                             <div class="tv-off-message">
                                 PRESS POWER BUTTON TO VIEW PROJECTS
                             </div>
-                            <div class="tv-static"></div>
                             <div class="projects-carousel">
                                 <button class="carousel-nav carousel-prev" onclick="previousProject()">‹</button>
                                 
                                 <div class="project-slides">
-                                    <!-- Projet 1 -->
+                                    <!-- Project 1 -->
                                     <div class="project-slide active">
                                         <div class="project-content">
                                             <div class="project-image-container">
@@ -1621,7 +370,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Projet 2 -->
+                                    <!-- Project 2 -->
                                     <div class="project-slide">
                                         <div class="project-content">
                                             <div class="project-image-container">
@@ -1641,7 +390,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Projet 3 -->
+                                    <!-- Project 3 -->
                                     <div class="project-slide">
                                         <div class="project-content">
                                             <div class="project-image-container">
@@ -1674,12 +423,12 @@
                     </div>
                 </div>
 
-                <!-- Section Contact -->
+                <!-- Contact Section -->
                 <div class="section" id="contact">
                     <h3 class="section-title">CONTACT INTERFACE</h3>
                     
                     <div class="contact-grid">
-                        <div class="contact-form">
+                        <div class="contact-form card">
                             <div class="form-group">
                                 <label class="form-label">NAME:</label>
                                 <input type="text" class="form-input" placeholder="Your name...">
@@ -1695,23 +444,23 @@
                                 <textarea class="form-textarea" placeholder="Your message here..."></textarea>
                             </div>
                             
-                            <button class="form-button" onclick="sendMessage()">SEND MESSAGE</button>
+                            <button class="btn btn-primary" onclick="sendMessage()">SEND MESSAGE</button>
                         </div>
                         
-                        <div class="contact-info">
+                        <div class="contact-info card">
                             <div class="contact-item">
                                 <div class="contact-label">EMAIL</div>
-                                <a href="mailto:contact@ludovichorem.com" class="contact-value">contact@ludovichorem.com</a>
+                                <div class="contact-value"><a href="mailto:contact@ludovichorem.com">contact@ludovichorem.com</a></div>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-label">GITHUB</div>
-                                <a target="_blank" href="https://github.com/LuluHow" class="contact-value">https://github.com/LuluHow</a>
+                                <div class="contact-value"><a target="_blank" href="https://github.com/LuluHow">https://github.com/LuluHow</a></div>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-label">LINKEDIN</div>
-                                <a href="https://www.linkedin.com/in/ludovichorem" class="contact-value" target="_blank">https://www.linkedin.com/in/ludovichorem</a>
+                                <div class="contact-value"><a href="https://www.linkedin.com/in/ludovichorem" target="_blank">https://www.linkedin.com/in/ludovichorem</a></div>
                             </div>
                             
                             <div class="contact-item">
@@ -1735,502 +484,443 @@
         </div>
 
         <!-- Footer -->
-        <div class="footer" id="footer">
+        <div class="footer fade-in" id="footer">
             <p>© 2025 LUDOVIC HOREM - POWERED BY LOVE AND COFFEE(s)</p>
         </div>
     </div>
 
     <script>
-        // Variables globales
-        let audioEnabled = false;
-        let currentSection = 'home';
-        let synth = null;
-        let melodyLoop = null;
-        let isTransitioning = false;
-        let currentProjectIndex = 0;
-        const totalProjects = 3;
-        let tvIsOn = false;
+        // ==================== GLOBAL VARIABLES ====================
+        const AppState = {
+            audioEnabled: false,
+            currentSection: 'home',
+            synth: null,
+            melodyLoop: null,
+            isTransitioning: false,
+            currentProjectIndex: 0,
+            totalProjects: 3,
+            tvIsOn: false
+        };
 
-        // Notes et mélodie
-        const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; 
-        const melody = [
-            0, 2, 4, 2, 0, 2, 4, 2,
-            4, 5, 6, 4, 5, 6,
-            5, 4, 2, 0, 2, 4,
-            4, 5, 7, 5, 4, 2,
-            0, 2, 4, 5, 4, 2, 0
-        ];
-
-        // Initialisation
-        document.addEventListener('DOMContentLoaded', function() {
-            initBootSequence();
-        });
-
-        // Nouvelle séquence de boot avec nom au centre
-        function initBootSequence() {
-            const bootScreen = document.getElementById('bootScreen');
-            const bootName = document.getElementById('bootName');
-            const mainScreen = document.getElementById('mainScreen');
-            
-            // Après 3 secondes, démarrer l'animation de remontée
-            setTimeout(() => {
-                bootName.classList.add('moving-up');
-                
-                // Après 1 seconde de remontée, faire apparaître la page
-                setTimeout(() => {
-                    bootScreen.classList.add('hidden');
-                    mainScreen.classList.add('loaded');
-                    
-                    setTimeout(() => {
-                        initializeSystem();
-                    }, 300);
-                }, 1000);
-            }, 3000);
-        }
-
-        function initializeSystem() {
-            // Faire apparaître les éléments de la page progressivement
-            setTimeout(() => {
-                document.getElementById('header').classList.add('loaded');
-            }, 200);
-            
-            setTimeout(() => {
-                document.getElementById('navigation').classList.add('loaded');
-            }, 400);
-            
-            setTimeout(() => {
-                document.getElementById('content').classList.add('loaded');
-            }, 600);
-            
-            setTimeout(() => {
-                document.getElementById('footer').classList.add('loaded');
-            }, 800);
-            
-            initNavigation();
-            initAudio();
-            animateSkillBars();
-            initProjectCarousel();
-            startTypewriterEffect();
-            // Démarrer l'effet spectaculaire du titre principal
-            //setTimeout(startMainTitleEffect, 1200);
-            setTimeout(animateIcons, 2000);
-            initCTARippleEffect();
-        }
-
-        // Effet spectaculaire du titre principal amélioré
-        function startMainTitleEffect() {
-            const mainTitle = document.getElementById('mainTitle');
-            
-            // Déclencher l'animation de dépixelisation
-            mainTitle.classList.add('depixelizing');
-            
-            // Sons d'accompagnement si audio activé
-            if (audioEnabled && synth) {
-                // Son de scanline plus subtil
-                const scanlineSound = setInterval(() => {
-                    if (audioEnabled && synth) {
-                        synth.triggerAttackRelease(800 + Math.random() * 300, '64n');
-                    }
-                }, 150);
-                
-                // Son final de "résolution"
-                setTimeout(() => {
-                    clearInterval(scanlineSound);
-                    if (audioEnabled && synth) {
-                        // Accord final
-                        synth.triggerAttackRelease(600, '8n');
-                        setTimeout(() => synth.triggerAttackRelease(800, '8n'), 100);
-                        setTimeout(() => synth.triggerAttackRelease(1000, '4n'), 200);
-                    }
-                }, 2800);
+        const Config = {
+            notes: [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25],
+            melody: [0, 2, 4, 2, 0, 2, 4, 2, 4, 5, 6, 4, 5, 6, 5, 4, 2, 0, 2, 4, 4, 5, 7, 5, 4, 2, 0, 2, 4, 5, 4, 2, 0],
+            timings: {
+                bootDelay: 3000,
+                moveUpDelay: 1000,
+                initDelay: 300,
+                staggerDelay: 200
             }
-            
-            // Transition vers l'animation finale
-            setTimeout(() => {
-                mainTitle.classList.remove('depixelizing');
-                mainTitle.classList.add('complete');
-            }, 3000);
-        }
+        };
 
-        // Fonction pour allumer/éteindre la TV
-        function toggleTV() {
-            const tvScreen = document.getElementById('tvScreen');
-            const tvPowerBtn = document.getElementById('tvPowerBtn');
+        // ==================== UTILITY FUNCTIONS ====================
+        const Utils = {
+            delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
             
-            tvIsOn = !tvIsOn;
+            getElement: (id) => document.getElementById(id),
             
-            if (tvIsOn) {
-                tvScreen.classList.remove('off');
-                tvPowerBtn.classList.add('on');
-            } else {
-                tvScreen.classList.add('off');
-                tvPowerBtn.classList.remove('on');
-            }
-        }
-
-        // Navigation avec transitions
-        function initNavigation() {
-            const navItems = document.querySelectorAll('.nav-item');
+            getAllElements: (selector) => document.querySelectorAll(selector),
             
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (isTransitioning) return;
-                    
-                    const section = item.dataset.section;
-                    
-                    if (section !== currentSection) {
-                        navigateToSection(section);
-                    }
+            addClass: (element, className) => element?.classList.add(className),
+            
+            removeClass: (element, className) => element?.classList.remove(className),
+            
+            toggleClass: (element, className) => element?.classList.toggle(className),
+            
+            setAttributes: (element, attributes) => {
+                Object.entries(attributes).forEach(([key, value]) => {
+                    element.setAttribute(key, value);
                 });
-            });
-        }
-
-        function navigateToSection(sectionName) {
-            if (isTransitioning) return;
-            
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(nav => nav.classList.remove('active'));
-            
-            const targetNav = document.querySelector(`[data-section="${sectionName}"]`);
-            if (targetNav) {
-                targetNav.classList.add('active');
             }
-            
-            switchSectionWithTransition(sectionName);
-        }
+        };
 
-        function switchSectionWithTransition(sectionName) {
-            if (isTransitioning) return;
-            
-            isTransitioning = true;
-            const overlay = document.getElementById('transitionOverlay');
-            const container = document.getElementById('sectionsContainer');
-            
-            overlay.classList.add('active');
-            
-            setTimeout(() => {
-                container.setAttribute('data-active', sectionName);
-                currentSection = sectionName;
+        // ==================== AUDIO SYSTEM ====================
+        const AudioSystem = {
+            async enable() {
+                try {
+                    await Tone.start();
+                    AppState.synth = new Tone.Synth({
+                        oscillator: { type: 'square' },
+                        envelope: { attack: 0.01, decay: 0.1, sustain: 0.3, release: 0.2 }
+                    }).toDestination();
+                    
+                    AppState.audioEnabled = true;
+                    Utils.addClass(Utils.getElement('audioBtn'), 'active');
+                    this.startBackgroundMelody();
+                } catch (error) {
+                    console.log('Audio unavailable');
+                }
+            },
+
+            toggle() {
+                if (!AppState.audioEnabled) {
+                    this.enable();
+                } else {
+                    AppState.audioEnabled = false;
+                    Utils.removeClass(Utils.getElement('audioBtn'), 'active');
+                    this.stopBackgroundMelody();
+                }
+            },
+
+            startBackgroundMelody() {
+                if (!AppState.audioEnabled || !AppState.synth) return;
                 
-                overlay.classList.remove('active');
+                let currentNoteIndex = 0;
+                
+                const playNextNote = () => {
+                    if (!AppState.audioEnabled || !AppState.synth) return;
+                    
+                    const noteIndex = Config.melody[currentNoteIndex];
+                    const frequency = Config.notes[noteIndex];
+                    
+                    AppState.synth.triggerAttackRelease(frequency, '4n');
+                    currentNoteIndex = (currentNoteIndex + 1) % Config.melody.length;
+                    AppState.melodyLoop = setTimeout(playNextNote, 500);
+                };
+                
+                playNextNote();
+            },
+
+            stopBackgroundMelody() {
+                if (AppState.melodyLoop) {
+                    clearTimeout(AppState.melodyLoop);
+                    AppState.melodyLoop = null;
+                }
+            },
+
+            playSound(frequency, duration = '32n') {
+                if (AppState.audioEnabled && AppState.synth) {
+                    AppState.synth.triggerAttackRelease(frequency, duration);
+                }
+            }
+        };
+
+        // ==================== BOOT SYSTEM ====================
+        const BootSystem = {
+            async start() {
+                const bootScreen = Utils.getElement('bootScreen');
+                const bootName = Utils.getElement('bootName');
+                const mainScreen = Utils.getElement('mainScreen');
+                
+                await Utils.delay(Config.timings.bootDelay);
+                Utils.addClass(bootName, 'moving-up');
+                
+                await Utils.delay(Config.timings.moveUpDelay);
+                Utils.addClass(bootScreen, 'hidden');
+                Utils.addClass(mainScreen, 'loaded');
+                
+                await Utils.delay(Config.timings.initDelay);
+                await this.initializeSystem();
+            },
+
+            async initializeSystem() {
+                const elements = ['header', 'navigation', 'content', 'footer'];
+                
+                for (let i = 0; i < elements.length; i++) {
+                    await Utils.delay(Config.timings.staggerDelay);
+                    Utils.addClass(Utils.getElement(elements[i]), 'loaded');
+                }
+                
+                // Initialize subsystems
+                Navigation.init();
+                AudioSystem.enable();
+                this.initializeAnimations();
+            },
+
+            initializeAnimations() {
+                AnimationSystem.animateSkillBars();
+                AnimationSystem.startTypewriterEffect();
+                ProjectCarousel.init();
+                setTimeout(() => AnimationSystem.animateIcons(), 2000);
+            }
+        };
+
+        // ==================== NAVIGATION SYSTEM ====================
+        const Navigation = {
+            init() {
+                const navItems = Utils.getAllElements('.nav-item');
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        if (AppState.isTransitioning) return;
+                        
+                        const section = item.dataset.section;
+                        if (section !== AppState.currentSection) {
+                            this.navigateToSection(section);
+                        }
+                    });
+                });
+            },
+
+            navigateToSection(sectionName) {
+                if (AppState.isTransitioning) return;
+                
+                const navItems = Utils.getAllElements('.nav-item');
+                navItems.forEach(nav => Utils.removeClass(nav, 'active'));
+                
+                const targetNav = document.querySelector(`[data-section="${sectionName}"]`);
+                if (targetNav) Utils.addClass(targetNav, 'active');
+                
+                this.switchSectionWithTransition(sectionName);
+            },
+
+            async switchSectionWithTransition(sectionName) {
+                if (AppState.isTransitioning) return;
+                
+                AppState.isTransitioning = true;
+                const overlay = Utils.getElement('transitionOverlay');
+                const container = Utils.getElement('sectionsContainer');
+                
+                Utils.addClass(overlay, 'active');
+                
+                await Utils.delay(200);
+                
+                Utils.setAttributes(container, { 'data-active': sectionName });
+                AppState.currentSection = sectionName;
+                
+                Utils.removeClass(overlay, 'active');
                 
                 if (sectionName === 'about') {
-                    setTimeout(animateSkillBars, 200);
+                    setTimeout(() => AnimationSystem.animateSkillBars(), 200);
                 }
                 
-                isTransitioning = false;
-            }, 200);
-        }
-
-        // Audio system
-        function initAudio() {
-            const audioBtn = document.getElementById('audioBtn');
-            
-            audioBtn.addEventListener('click', () => {
-                toggleAudio();
-            });
-            
-            document.addEventListener('click', enableAudio, { once: true });
-        }
-
-        async function enableAudio() {
-            try {
-                await Tone.start();
-                synth = new Tone.Synth({
-                    oscillator: {
-                        type: 'square'
-                    },
-                    envelope: {
-                        attack: 0.01,
-                        decay: 0.1,
-                        sustain: 0.3,
-                        release: 0.2
-                    }
-                }).toDestination();
-                
-                audioEnabled = true;
-                document.getElementById('audioBtn').classList.add('active');
-                startBackgroundMelody();
-            } catch (error) {
-                console.log('Audio unavailable');
+                AppState.isTransitioning = false;
             }
-        }
+        };
 
-        function toggleAudio() {
-            if (!audioEnabled) {
-                enableAudio();
-            } else {
-                audioEnabled = false;
-                document.getElementById('audioBtn').classList.remove('active');
-                stopBackgroundMelody();
-            }
-        }
+        // ==================== ANIMATION SYSTEM ====================
+        const AnimationSystem = {
+            animateSkillBars() {
+                const skillFills = Utils.getAllElements('.skill-fill');
+                skillFills.forEach((fill, index) => {
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        const targetWidth = fill.dataset.width;
+                        fill.style.width = targetWidth + '%';
+                    }, index * 100);
+                });
+            },
 
-        function startBackgroundMelody() {
-            if (!audioEnabled || !synth) return;
-            
-            let currentNoteIndex = 0;
-            
-            function playNextNote() {
-                if (!audioEnabled || !synth) return;
+            startTypewriterEffect() {
+                const heroTitle = document.querySelector('.hero-title');
+                const originalText = "TRANSFORMEZ VOS IDÉES EN RÉALITÉ";
+                let currentText = "";
+                let currentIndex = 0;
                 
-                const noteIndex = melody[currentNoteIndex];
-                const frequency = notes[noteIndex];
+                Utils.addClass(heroTitle, 'typing');
+                heroTitle.textContent = "";
                 
-                synth.triggerAttackRelease(frequency, '4n');
-                
-                currentNoteIndex = (currentNoteIndex + 1) % melody.length;
-                
-                melodyLoop = setTimeout(playNextNote, 500);
-            }
-            
-            playNextNote();
-        }
-
-        function stopBackgroundMelody() {
-            if (melodyLoop) {
-                clearTimeout(melodyLoop);
-                melodyLoop = null;
-            }
-        }
-
-        // Skill bars animation
-        function animateSkillBars() {
-            const skillFills = document.querySelectorAll('.skill-fill');
-            
-            skillFills.forEach((fill, index) => {
-                fill.style.width = '0%';
-                
-                setTimeout(() => {
-                    const targetWidth = fill.dataset.width;
-                    fill.style.width = targetWidth + '%';
-                }, index * 100);
-            });
-        }
-
-        // Project Carousel
-        function initProjectCarousel() {
-            // Support du swipe sur mobile
-            let startX, startY, distX, distY;
-            const carousel = document.querySelector('.project-slides');
-            
-            carousel.addEventListener('touchstart', function(e) {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            });
-            
-            carousel.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-            });
-            
-            carousel.addEventListener('touchend', function(e) {
-                distX = e.changedTouches[0].clientX - startX;
-                distY = e.changedTouches[0].clientY - startY;
-                
-                if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > 50) {
-                    if (distX > 0) {
-                        previousProject();
+                const typeNextLetter = () => {
+                    if (currentIndex < originalText.length) {
+                        currentText += originalText[currentIndex];
+                        heroTitle.textContent = currentText;
+                        currentIndex++;
+                        
+                        AudioSystem.playSound(800);
+                        
+                        const delay = Math.random() * 100 + 50;
+                        setTimeout(typeNextLetter, delay);
                     } else {
-                        nextProject();
+                        setTimeout(() => {
+                            Utils.removeClass(heroTitle, 'typing');
+                            Utils.addClass(heroTitle, 'typing-complete');
+                        }, 500);
+                    }
+                };
+                
+                setTimeout(typeNextLetter, 800);
+            },
+
+            animateIcons() {
+                const icons = Utils.getAllElements('.benefit-icon');
+                icons.forEach((icon, index) => {
+                    setTimeout(() => {
+                        Utils.addClass(icon, 'loaded');
+                        AudioSystem.playSound(1200 + (index * 200), '16n');
+                    }, index * 200);
+                });
+            }
+        };
+
+        // ==================== PROJECT CAROUSEL ====================
+        const ProjectCarousel = {
+            init() {
+                const carousel = document.querySelector('.project-slides');
+                let startX, startY;
+                
+                carousel.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                });
+                
+                carousel.addEventListener('touchend', (e) => {
+                    const distX = e.changedTouches[0].clientX - startX;
+                    const distY = e.changedTouches[0].clientY - startY;
+                    
+                    if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > 50) {
+                        if (distX > 0) {
+                            this.previousProject();
+                        } else {
+                            this.nextProject();
+                        }
+                    }
+                });
+            },
+
+            nextProject() {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = (AppState.currentProjectIndex + 1) % AppState.totalProjects;
+                this.updateDisplay();
+            },
+
+            previousProject() {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = (AppState.currentProjectIndex - 1 + AppState.totalProjects) % AppState.totalProjects;
+                this.updateDisplay();
+            },
+
+            goToProject(index) {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = index;
+                this.updateDisplay();
+            },
+
+            updateDisplay() {
+                const slides = Utils.getAllElements('.project-slide');
+                const indicators = Utils.getAllElements('.indicator');
+                
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === AppState.currentProjectIndex);
+                });
+                
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === AppState.currentProjectIndex);
+                });
+            }
+        };
+
+        // ==================== TV SYSTEM ====================
+        const TVSystem = {
+            toggle() {
+                const tvScreen = Utils.getElement('tvScreen');
+                const tvPowerBtn = Utils.getElement('tvPowerBtn');
+                
+                AppState.tvIsOn = !AppState.tvIsOn;
+                
+                if (AppState.tvIsOn) {
+                    Utils.removeClass(tvScreen, 'off');
+                    Utils.addClass(tvPowerBtn, 'on');
+                } else {
+                    Utils.addClass(tvScreen, 'off');
+                    Utils.removeClass(tvPowerBtn, 'on');
+                }
+            }
+        };
+
+        // ==================== EVENT LISTENERS ====================
+        const EventHandlers = {
+            init() {
+                // Audio toggle
+                Utils.getElement('audioBtn').addEventListener('click', () => AudioSystem.toggle());
+                
+                // Enable audio on first interaction
+                document.addEventListener('click', () => AudioSystem.enable(), { once: true });
+                
+                // Keyboard shortcuts
+                document.addEventListener('keydown', this.handleKeyboard);
+                
+                // Screen saver
+                this.initScreenSaver();
+            },
+
+            handleKeyboard(e) {
+                // Navigation shortcuts
+                if (e.ctrlKey || e.metaKey) {
+                    const shortcuts = {
+                        '1': 'home',
+                        '2': 'about', 
+                        '3': 'projects',
+                        '4': 'contact'
+                    };
+                    
+                    if (shortcuts[e.key]) {
+                        e.preventDefault();
+                        Navigation.navigateToSection(shortcuts[e.key]);
                     }
                 }
-            });
+                
+                // Project navigation
+                if (AppState.currentSection === 'projects' && AppState.tvIsOn) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        ProjectCarousel.previousProject();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        ProjectCarousel.nextProject();
+                    }
+                }
+                
+                // TV toggle
+                if (AppState.currentSection === 'projects' && e.key === ' ') {
+                    e.preventDefault();
+                    TVSystem.toggle();
+                }
+            },
+
+            initScreenSaver() {
+                let inactivityTimer;
+                let isScreenSaver = false;
+
+                const resetTimer = () => {
+                    clearTimeout(inactivityTimer);
+                    if (isScreenSaver) {
+                        isScreenSaver = false;
+                        document.body.style.filter = 'none';
+                    }
+                    
+                    inactivityTimer = setTimeout(() => {
+                        if (!isScreenSaver) {
+                            isScreenSaver = true;
+                            document.body.style.filter = 'brightness(0.3)';
+                        }
+                    }, 30000);
+                };
+
+                document.addEventListener('mousemove', resetTimer);
+                document.addEventListener('keypress', resetTimer);
+                resetTimer();
+            }
+        };
+
+        // ==================== GLOBAL FUNCTIONS ====================
+        function navigateToSection(section) {
+            Navigation.navigateToSection(section);
+        }
+
+        function toggleTV() {
+            TVSystem.toggle();
         }
 
         function nextProject() {
-            if (!tvIsOn) return;
-            currentProjectIndex = (currentProjectIndex + 1) % totalProjects;
-            updateProjectDisplay();
+            ProjectCarousel.nextProject();
         }
 
         function previousProject() {
-            if (!tvIsOn) return;
-            currentProjectIndex = (currentProjectIndex - 1 + totalProjects) % totalProjects;
-            updateProjectDisplay();
+            ProjectCarousel.previousProject();
         }
 
         function goToProject(index) {
-            if (!tvIsOn) return;
-            currentProjectIndex = index;
-            updateProjectDisplay();
+            ProjectCarousel.goToProject(index);
         }
 
-        function updateProjectDisplay() {
-            const slides = document.querySelectorAll('.project-slide');
-            const indicators = document.querySelectorAll('.indicator');
-            
-            slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === currentProjectIndex);
-            });
-            
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentProjectIndex);
-            });
-        }
-
-        // Effet machine à écrire pour le titre hero
-        function startTypewriterEffect() {
-            const heroTitle = document.querySelector('.hero-title');
-            const originalText = "TRANSFORMEZ VOS IDÉES EN RÉALITÉ";
-            let currentText = "";
-            let currentIndex = 0;
-            
-            heroTitle.classList.add('typing');
-            heroTitle.textContent = "";
-            
-            function typeNextLetter() {
-                if (currentIndex < originalText.length) {
-                    currentText += originalText[currentIndex];
-                    heroTitle.textContent = currentText;
-                    currentIndex++;
-                    
-                    // Son de frappe si audio activé
-                    if (audioEnabled && synth) {
-                        synth.triggerAttackRelease(800, '32n');
-                    }
-                    
-                    // Délai variable pour un effet plus naturel
-                    const delay = Math.random() * 100 + 50;
-                    setTimeout(typeNextLetter, delay);
-                } else {
-                    // Animation terminée
-                    setTimeout(() => {
-                        heroTitle.classList.remove('typing');
-                        heroTitle.classList.add('typing-complete');
-                    }, 500);
-                }
-            }
-            
-            // Démarrer après un court délai
-            setTimeout(typeNextLetter, 800);
-        }
-
-        // Effet ripple pour les boutons CTA
-        function initCTARippleEffect() {
-            const ctaButtons = document.querySelectorAll('.cta-primary, .cta-secondary');
-            
-            ctaButtons.forEach(button => {
-                // Fonction pour créer l'effet ripple
-                function createRipple(e) {
-                    const rect = button.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    
-                    // Gérer les événements tactiles et souris
-                    const clientX = e.clientX || (e.touches && e.touches[0].clientX);
-                    const clientY = e.clientY || (e.touches && e.touches[0].clientY);
-                    
-                    const x = clientX - rect.left - size / 2;
-                    const y = clientY - rect.top - size / 2;
-                    
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('cta-ripple');
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    
-                    button.appendChild(ripple);
-                    
-                    // Son de clic si audio activé
-                    if (audioEnabled && synth) {
-                        synth.triggerAttackRelease(600, '32n');
-                    }
-                    
-                    // Supprimer l'élément ripple après l'animation
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                }
-                
-                // Événements pour desktop et mobile
-                button.addEventListener('click', createRipple);
-                button.addEventListener('touchstart', createRipple);
-            });
-        }
-
-        // Animation des icônes avec effet pixelisé
-        function animateIcons() {
-            const icons = document.querySelectorAll('.benefit-icon');
-            
-            icons.forEach((icon, index) => {
-                setTimeout(() => {
-                    icon.classList.add('loaded');
-                    
-                    // Son de "pop" si audio activé
-                    if (audioEnabled && synth) {
-                        synth.triggerAttackRelease(1200 + (index * 200), '16n');
-                    }
-                }, index * 200);
-            });
-        }
-
-        // Contact form
         function sendMessage() {
             alert('MESSAGE SENT!\n\nThank you for your message.\nI will respond within 24 hours.');
         }
 
-        // Raccourcis clavier
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.metaKey) {
-                switch(e.key) {
-                    case '1':
-                        e.preventDefault();
-                        document.querySelector('[data-section="home"]').click();
-                        break;
-                    case '2':
-                        e.preventDefault();
-                        document.querySelector('[data-section="about"]').click();
-                        break;
-                    case '3':
-                        e.preventDefault();
-                        document.querySelector('[data-section="projects"]').click();
-                        break;
-                    case '4':
-                        e.preventDefault();
-                        document.querySelector('[data-section="contact"]').click();
-                        break;
-                }
-            }
-            
-            // Navigation des projets avec les flèches
-            if (currentSection === 'projects' && tvIsOn) {
-                if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    previousProject();
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    nextProject();
-                }
-            }
-            
-            // Allumer/éteindre TV avec Espace
-            if (currentSection === 'projects' && e.key === ' ') {
-                e.preventDefault();
-                toggleTV();
-            }
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', async () => {
+            EventHandlers.init();
+            await BootSystem.start();
         });
-
-        // Screen saver
-        let inactivityTimer;
-        let isScreenSaver = false;
-
-        function resetInactivityTimer() {
-            clearTimeout(inactivityTimer);
-            if (isScreenSaver) {
-                isScreenSaver = false;
-                document.body.style.filter = 'none';
-            }
-            
-            inactivityTimer = setTimeout(() => {
-                if (!isScreenSaver) {
-                    isScreenSaver = true;
-                    document.body.style.filter = 'brightness(0.3)';
-                }
-            }, 30000);
-        }
-
-        document.addEventListener('mousemove', resetInactivityTimer);
-        document.addEventListener('keypress', resetInactivityTimer);
-        resetInactivityTimer();
     </script>
 </body>
 </html>
