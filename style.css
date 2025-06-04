@@ -1197,3 +1197,39 @@
                 font-size: var(--font-xl);
             }
         }
+
+
+@media (max-width: 768px) {
+    .avatar-tv-screen::before,
+    .avatar-tv-screen .scanlines,
+    .tv-screen::before {
+        animation: none !important;
+    }
+    
+    .avatar-tv-screen::after {
+        animation-duration: 6s !important; 
+    }
+    
+    .main-title {
+        animation: none !important; 
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.8) !important;
+    }
+    
+
+    .benefit-icon {
+        animation: none !important;
+    }
+    
+    .hero-title::after,
+    .skill-fill::after {
+        animation-duration: 2s !important; 
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
