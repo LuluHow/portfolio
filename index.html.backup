@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr" itemscope itemtype="https://schema.org/WebPage">
+<head>
+    <!-- Meta tags essentiels -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Ludovic Horem - Développeur Web & Mobile à Sens | Applications Sur Mesure</title>
+    <meta name="description" content="Développeur passionné à Sens avec +10 ans d'expérience. Création d'applications web et mobiles sur mesure pour entreprises locales et nationales. Devis gratuit.">
+    <meta name="keywords" content="développeur Sens, développeur web Sens, application mobile Sensxz, Flutter développeur, Node.js, JavaScript, développeur freelance Yonne, création site web Sens, application sur mesure Bourgogne">
+    <meta name="author" content="Ludovic Horem">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="language" content="fr-FR">
+    <meta name="geo.region" content="FR-89">
+    <meta name="geo.placename" content="Sens, Yonne, Bourgogne-Franche-Comté">
+    <meta name="geo.position" content="48.198;3.283">
+    <meta name="ICBM" content="48.198, 3.283">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ludovichorem.com">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ludovichorem.com">
+    <meta property="og:title" content="Ludovic Horem - Développeur Web & Mobile à Sens | Applications Sur Mesure">
+    <meta property="og:description" content="Développeur passionné à Sens avec +10 ans d'expérience. Création d'applications web et mobiles sur mesure. Devis gratuit.">
+    <meta property="og:image" content="https://ludovichorem.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Ludovic Horem - Développeur à Sens">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Ludovic Horem - Développeur">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ludovichorem.com">
+    <meta name="twitter:title" content="Ludovic Horem - Développeur Web & Mobile à Sens">
+    <meta name="twitter:description" content="Développeur passionné à Sens avec +10 ans d'expérience. Création d'applications web et mobiles sur mesure.">
+    <meta name="twitter:image" content="https://ludovichorem.com/og-image.jpg">
+    <meta name="twitter:image:alt" content="Ludovic Horem - Développeur à Sens">
+    <meta name="twitter:creator" content="@LudovicHorem">
+    
+    <!-- Favicon et icons -->
+    <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicons/favicon.svg" />
+    <link rel="shortcut icon" href="favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="favicons/site.webmanifest" />
+    <meta name="theme-color" content="#00ff41">
+    <meta name="msapplication-TileColor" content="#00ff41">
+    
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "@id": "https://ludovichorem.com/#business",
+                "name": "Ludovic Horem - Développeur",
+                "description": "Développeur web et mobile spécialisé en applications sur mesure",
+                "url": "https://ludovichorem.com",
+                "telephone": "+33-7-66-44-61-41",
+                "email": "contact@ludovichorem.com",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Sens",
+                    "addressRegion": "Yonne",
+                    "postalCode": "89100",
+                    "addressCountry": "FR"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 48.198,
+                    "longitude": 3.283
+                },
+                "areaServed": [
+                    {
+                        "@type": "City",
+                        "name": "Sens"
+                    },
+                    {
+                        "@type": "AdministrativeArea",
+                        "name": "Yonne"
+                    },
+                    {
+                        "@type": "AdministrativeArea", 
+                        "name": "Bourgogne-Franche-Comté"
+                    },
+                    {
+                        "@type": "Country",
+                        "name": "France"
+                    }
+                ],
+                "serviceType": [
+                    "Développement web",
+                    "Développement mobile",
+                    "Applications sur mesure"
+                ],
+                "priceRange": "€€",
+                "openingHours": "Mo-Fr 09:00-18:00",
+                "sameAs": [
+                    "https://github.com/LuluHow",
+                    "https://www.linkedin.com/in/ludovichorem"
+                ]
+            },
+            {
+                "@type": "Person",
+                "@id": "https://ludovichorem.com/#person",
+                "name": "Ludovic Horem",
+                "jobTitle": "Développeur Web et Mobile",
+                "description": "Développeur passionné avec plus de 10 ans d'expérience",
+                "url": "https://ludovichorem.com",
+                "email": "contact@ludovichorem.com",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressLocality": "Sens",
+                    "addressRegion": "Yonne",
+                    "addressCountry": "FR"
+                },
+                "alumniOf": "Epitech",
+                "knowsAbout": [
+                    "JavaScript",
+                    "Flutter",
+                    "Node.js",
+                    "Python",
+                    "CSS/SASS",
+                    "Base de données",
+                    "Développement mobile",
+                    "Applications web"
+                ],
+                "sameAs": [
+                    "https://github.com/LuluHow",
+                    "https://www.linkedin.com/in/ludovichorem"
+                ],
+                "worksFor": {
+                    "@id": "https://ludovichorem.com/#business"
+                }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://ludovichorem.com/#website", 
+                "url": "https://ludovichorem.com",
+                "name": "Ludovic Horem - Développeur",
+                "description": "Services de développement web et mobile",
+                "publisher": {
+                    "@id": "https://ludovichorem.com/#person"
+                },
+                "inLanguage": "fr-FR"
+            },
+            {
+                "@type": "ProfessionalService",
+                "name": "Services de Développement",
+                "description": "Développement d'applications web et mobiles sur mesure",
+                "provider": {
+                    "@id": "https://ludovichorem.com/#business"
+                },
+                "areaServed": {
+                    "@type": "Place",
+                    "name": "Sens et région"
+                },
+                "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "Services de développement",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Développement d'applications web",
+                                "description": "Création d'applications web modernes"
+                            }
+                        },
+                        {
+                            "@type": "Offer", 
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Développement d'applications mobiles",
+                                "description": "Applications mobiles natives ou multi-plateformes"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "itemOffered": {
+                                "@type": "Service", 
+                                "name": "Développement backend",
+                                "description": "APIs et services backend"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+    </script>
+    
+    <!-- Tone.js pour les effets sonores -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body itemscope itemtype="https://schema.org/WebPage">
+    <!-- Boot Screen -->
+    <div class="boot-screen" id="bootScreen">
+        <div class="boot-name" id="bootName">{ Ludovic Horem }</div>
+    </div>
+
+    <div class="computer-screen scanlines fade-in" id="mainScreen">
+        <!-- Header -->
+        <header class="header fade-in" id="header" role="banner">
+            <div class="system-info">
+                <div class="computer-name">Ludo.app © 1990</div>
+                <div class="system-status">
+                    <span class="status-item">Sites web</span>
+                    <span class="status-item">Applications mobiles</span>
+                </div>
+            </div>
+            
+            <div class="title-section">
+                <h1 class="main-title" id="mainTitle" itemprop="name">{ Ludovic Horem }</h1>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation fade-in" id="navigation" role="navigation" aria-label="Navigation principale">
+            <div class="nav-menu">
+                <div class="nav-item active" data-section="home" role="button" tabindex="0" aria-label="Accueil">ACCUEIL</div>
+                <div class="nav-item" data-section="about" role="button" tabindex="0" aria-label="À propos">À PROPOS</div>
+                <div class="nav-item" data-section="projects" role="button" tabindex="0" aria-label="Projets">PROJETS</div>
+                <div class="nav-item" data-section="contact" role="button" tabindex="0" aria-label="Contact">CONTACT</div>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <main class="content fade-in" id="content" role="main">
+            <div class="transition-overlay" id="transitionOverlay"></div>
+            <div class="sections-container" id="sectionsContainer" data-active="home">
+                <!-- Home Section -->
+                <section class="section" id="home" itemscope itemtype="https://schema.org/Service">
+                    <div class="hero-section">
+                        <h2 class="hero-title" itemprop="name">VOS IDÉES, MON CLAVIER: DONNEZ VIE À VOS PROJETS</h2>
+                        <p class="hero-subtitle" itemprop="description">Développeur passionné avec +10 ans d'expérience<br>Spécialisé dans la création d'applications sur mesure</p>
+                    </div>
+
+                    <div class="benefits-grid">
+                        <article class="benefit-card" itemscope itemtype="https://schema.org/Service">
+                            <span class="benefit-icon" aria-hidden="true">⚡</span>
+                            <div class="benefit-title" itemprop="name">RAPIDE</div>
+                            <div class="benefit-desc" itemprop="description">Livraison rapide avec méthodologie agile. Vos projets prennent vie en quelques semaines.</div>
+                        </article>
+                        
+                        <article class="benefit-card" itemscope itemtype="https://schema.org/Service">
+                            <span class="benefit-icon" aria-hidden="true">🎯</span>
+                            <div class="benefit-title" itemprop="name">SUR MESURE</div>
+                            <div class="benefit-desc" itemprop="description">Solutions personnalisées qui répondent précisément à vos besoins spécifiques.</div>
+                        </article>
+                        
+                        <article class="benefit-card" itemscope itemtype="https://schema.org/Service">
+                            <span class="benefit-icon" aria-hidden="true">💡</span>
+                            <div class="benefit-title" itemprop="name">INNOVATION</div>
+                            <div class="benefit-desc" itemprop="description">Technologies modernes et approches créatives pour des résultats exceptionnels.</div>
+                        </article>
+                        
+                        <article class="benefit-card" itemscope itemtype="https://schema.org/Service">
+                            <span class="benefit-icon" aria-hidden="true">🔧</span>
+                            <div class="benefit-title" itemprop="name">SUPPORT</div>
+                            <div class="benefit-desc" itemprop="description">Accompagnement continu et maintenance pour garantir la pérennité de vos projets.</div>
+                        </article>
+                    </div>
+
+                    <div class="cta-section">
+                        <button class="btn btn-primary cta-primary" onclick="navigateToSection('contact')" aria-label="Démarrer votre projet">DÉMARRER VOTRE PROJET</button>
+                        <button class="btn btn-secondary cta-secondary" onclick="navigateToSection('projects')" aria-label="Voir mes réalisations">VOIR MES RÉALISATIONS</button>
+                    </div>
+                </section>
+
+                <!-- About Section -->
+                <section class="section" id="about" itemscope itemtype="https://schema.org/Person">
+                    <div class="about-grid">
+                        <article class="profile-card card">
+                            <div class="avatar-tv-screen">
+                                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Avatar pixellisé de Ludovic Horem dans un téléviseur rétro">
+                                    <title>Ludovic Horem - Développeur</title>
+                                    <defs>
+                                      <!-- Gradient pour l'écran -->
+                                      <radialGradient id="screenGradient" cx="50%" cy="50%" r="70%">
+                                        <stop offset="0%" style="stop-color:#2a4a3a;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#1a3a2a;stop-opacity:1" />
+                                      </radialGradient>
+                                      
+                                      <!-- Pattern pour les scanlines -->
+                                      <pattern id="scanlines" patternUnits="userSpaceOnUse" width="1" height="2">
+                                        <rect width="1" height="1" fill="rgba(0,255,65,0.1)"/>
+                                        <rect y="1" width="1" height="1" fill="rgba(0,0,0,0.1)"/>
+                                      </pattern>
+                                  
+                                    </defs>
+                                    
+                                    <!-- Corps de la télé -->
+                                    <rect x="5" y="10" width="110" height="90" rx="8" fill="#4a4a4a" stroke="#6a6a6a" stroke-width="2"/>
+                                    <rect x="3" y="8" width="114" height="94" rx="10" fill="none" stroke="#2a2a2a" stroke-width="2"/>
+                                    
+                                    <!-- Grille métallique haut-parleur -->
+                                    <g opacity="0.6">
+                                      <circle cx="15" cy="25" r="1" fill="#2a2a2a"/>
+                                      <circle cx="18" cy="25" r="1" fill="#2a2a2a"/>
+                                      <circle cx="15" cy="28" r="1" fill="#2a2a2a"/>
+                                      <circle cx="18" cy="28" r="1" fill="#2a2a2a"/>
+                                    </g>
+                                    
+                                    <!-- Écran -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="url(#screenGradient)" stroke="#1a1a1a" stroke-width="1"/>
+                                    
+                                    <!-- Avatar pixellisé détaillé -->
+                                    <g transform="translate(18, 20)">
+                                      <!-- Arrière-plan cheveux -->
+                                      <rect x="20" y="8" width="44" height="12" fill="#4a2c17"/>
+                                      <rect x="24" y="4" width="36" height="8" fill="#4a2c17"/>
+                                      <rect x="28" y="2" width="28" height="4" fill="#4a2c17"/>
+                                      
+                                      <!-- Cheveux détaillés -->
+                                      <rect x="22" y="6" width="40" height="8" fill="#5d4037"/>
+                                      <rect x="26" y="4" width="32" height="6" fill="#5d4037"/>
+                                      <rect x="30" y="2" width="24" height="4" fill="#5d4037"/>
+                                      <!-- Mèches -->
+                                      <rect x="24" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="32" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="40" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="48" y="12" width="4" height="4" fill="#5d4037"/>
+                                      <rect x="56" y="12" width="4" height="4" fill="#5d4037"/>
+                                      
+                                      <!-- Oreilles -->
+                                      <rect x="16" y="24" width="6" height="8" fill="#d4c4a8"/>
+                                      <rect x="62" y="24" width="6" height="8" fill="#d4c4a8"/>
+                                      <rect x="18" y="26" width="2" height="4" fill="#c4b498"/>
+                                      <rect x="64" y="26" width="2" height="4" fill="#c4b498"/>
+                                      
+                                      <!-- Visage base -->
+                                      <rect x="22" y="16" width="40" height="28" fill="#d4c4a8"/>
+                                      
+                                      <!-- Ombres visage -->
+                                      <rect x="22" y="16" width="2" height="28" fill="#c4b498"/>
+                                      <rect x="60" y="16" width="2" height="28" fill="#c4b498"/>
+                                      <rect x="22" y="42" width="40" height="2" fill="#c4b498"/>
+                                      
+                                      <!-- Sourcils -->
+                                      <rect x="28" y="20" width="8" height="2" fill="#4a2c17"/>
+                                      <rect x="48" y="20" width="8" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Yeux détaillés -->
+                                      <rect x="26" y="24" width="12" height="6" fill="#ffffff"/>
+                                      <rect x="46" y="24" width="12" height="6" fill="#ffffff"/>
+                                      <!-- Iris -->
+                                      <rect x="30" y="26" width="6" height="4" fill="#3e2723"/>
+                                      <rect x="50" y="26" width="6" height="4" fill="#3e2723"/>
+                                      <!-- Pupilles -->
+                                      <rect x="32" y="27" width="2" height="2" fill="#000000"/>
+                                      <rect x="52" y="27" width="2" height="2" fill="#000000"/>
+                                      <!-- Reflets -->
+                                      <rect x="31" y="26" width="1" height="1" fill="#ffffff"/>
+                                      <rect x="51" y="26" width="1" height="1" fill="#ffffff"/>
+                                      <!-- Paupières -->
+                                      <rect x="26" y="24" width="12" height="1" fill="#c4b498"/>
+                                      <rect x="46" y="24" width="12" height="1" fill="#c4b498"/>
+                                      
+                                      <!-- Nez détaillé -->
+                                      <rect x="38" y="32" width="8" height="6" fill="#c4b498"/>
+                                      <rect x="40" y="34" width="4" height="4" fill="#b4a488"/>
+                                      <rect x="38" y="36" width="2" height="2" fill="#a49478"/>
+                                      <rect x="44" y="36" width="2" height="2" fill="#a49478"/>
+                                      
+                                      <!-- Barbe très détaillée -->
+                                      <!-- Barbe principale -->
+                                      <rect x="20" y="44" width="44" height="12" fill="#5d4037"/>
+                                      <rect x="24" y="56" width="36" height="8" fill="#5d4037"/>
+                                      <rect x="28" y="64" width="28" height="6" fill="#5d4037"/>
+                                      <rect x="32" y="70" width="20" height="4" fill="#5d4037"/>
+                                      
+                                      <!-- Texture barbe -->
+                                      <rect x="22" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="26" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="30" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="34" y="50" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="38" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="42" y="52" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="46" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="50" y="50" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="54" y="48" width="2" height="2" fill="#4a2c17"/>
+                                      <rect x="58" y="46" width="2" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Moustache détaillée -->
+                                      <rect x="30" y="38" width="24" height="6" fill="#5d4037"/>
+                                      <rect x="32" y="40" width="20" height="4" fill="#4a2c17"/>
+                                      <rect x="34" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      <rect x="42" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      <rect x="46" y="38" width="4" height="2" fill="#4a2c17"/>
+                                      
+                                      <!-- Bouche -->
+                                      <rect x="38" y="40" width="8" height="3" fill="#8d6e63"/>
+                                      <rect x="40" y="41" width="4" height="1" fill="#6d4c41"/>
+                                      
+                                    </g>
+                                    
+                                    <!-- Scanlines -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="url(#scanlines)" opacity="0.3"/>
+                                    
+                                  
+                                    
+                                    <!-- Boutons de la télé -->
+                                    <circle cx="112" cy="25" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <circle cx="112" cy="35" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <circle cx="112" cy="45" r="3" fill="#6a6a6a" stroke="#8a8a8a"/>
+                                    <text x="109" y="27" font-size="2" fill="#2a2a2a">V</text>
+                                    <text x="108.5" y="37" font-size="2" fill="#2a2a2a">CH</text>
+                                    <text x="109" y="47" font-size="2" fill="#2a2a2a">P</text>
+                                    
+                                    <!-- Antenne -->
+                                    <line x1="10" y1="10" x2="5" y2="2" stroke="#6a6a6a" stroke-width="1"/>
+                                    <line x1="110" y1="10" x2="115" y2="2" stroke="#6a6a6a" stroke-width="1"/>
+                                    <circle cx="5" cy="2" r="1" fill="#8a8a8a"/>
+                                    <circle cx="115" cy="2" r="1" fill="#8a8a8a"/>
+                                    
+                                    <!-- Marque TV -->
+                                    <text x="60" y="106" font-size="3" fill="#6a6a6a" text-anchor="middle" opacity="0.7">RETRO-TV</text>
+                                    
+                                    <!-- Effet de lueur verte sur l'écran -->
+                                    <rect x="15" y="18" width="90" height="74" rx="4" fill="rgba(0,255,65,0.05)" opacity="0.8">
+                                      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                                    </rect>
+                                    
+                                    <!-- Reflet sur l'écran -->
+                                    <ellipse cx="35" cy="35" rx="15" ry="8" fill="rgba(255,255,255,0.1)" opacity="0.6"/>
+                                    
+                                  
+                                  </svg>
+                                <div class="scanlines"></div>
+                            </div>
+                            <div class="profile-name" itemprop="name">Ludovic Horem</div>
+                            <div class="profile-role" itemprop="jobTitle">DÉVELOPPEUR</div>
+                            
+                            <div class="stats">
+                                <div class="stat">
+                                    <span class="stat-value">10+</span>
+                                    <div class="stat-label">ANNÉES</div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">99%</span>
+                                    <div class="stat-label">DISPONIBILITÉ</div>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">∞</span>
+                                    <div class="stat-label">PASSION</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="skills-section">
+                            <h3 class="section-title">MES ENGAGEMENTS</h3>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Code propre & maintenable</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Respect des délais</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Satisfaction client</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Amélioration continue</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Sécurité des données</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item" itemscope itemtype="https://schema.org/SkillStatement">
+                                <div class="skill-header">
+                                    <span class="skill-name" itemprop="name">Innovation & créativité</span>
+                                    <span class="skill-level" itemprop="proficiencyLevel">100%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-fill" data-width="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects Section -->
+                <section class="section" id="projects">
+                    <h3 class="section-title">ARCHIVE PROJETS</h3>
+                    
+                    <div class="tv-container">
+                        <button class="tv-power-button" id="tvPowerBtn" onclick="toggleTV()" aria-label="Allumer/Éteindre la télévision des projets">⏻</button>
+                        
+                        <div class="tv-screen off" id="tvScreen">
+                            <div class="tv-off-message">
+                                APPUYEZ SUR LE BOUTON POUR VOIR LES PROJETS
+                            </div>
+                            <div class="projects-carousel">
+                                <button class="carousel-nav carousel-prev" onclick="previousProject()" aria-label="Projet précédent">‹</button>
+                                
+                                <div class="project-slides">
+                                    <!-- Project 1 -->
+                                    <article class="project-slide active" itemscope itemtype="https://schema.org/SoftwareApplication">
+                                        <div class="project-content">
+                                            <div class="project-image-container">
+                                                <a href="https://www.sudokuhorizon.fr" target="_blank"><img src="sudokuhorizon.png" alt="Capture d'écran de l'application Sudoku Horizon - Interface de jeu iOS avec grille Sudoku moderne" itemprop="image"></a>
+                                            </div>
+                                            <div class="project-info">
+                                                <h3 itemprop="name">SUDOKU HORIZON</h3>
+                                                <div class="project-tech" itemprop="programmingLanguage">Flutter • iOS</div>
+                                                <p class="project-description" itemprop="description">
+                                                    Jeu de Sudoku iOS avec mode classique et Jigsaw. Génération procédurale de sudokus, résolution
+                                                    et classification en temps réel. Algorithmes avancés pour l'analyse de difficulté des puzzles.
+                                                </p>
+                                                <div class="project-status">
+                                                    <span class="status-badge">ACTIF</span>
+                                                    <span class="progress-indicator">100% TERMINÉ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!-- Project 2 -->
+                                    <article class="project-slide" itemscope itemtype="https://schema.org/SoftwareApplication">
+                                        <div class="project-content">
+                                            <div class="project-image-container">
+                                                <a href="https://iris.ludovichorem.com" target="_blank"><img src="iris.png" alt="Application IRIS - Interface de surveillance santé avec IA pour détection épilepsie" itemprop="image"></a>
+                                            </div>
+                                            <div class="project-info">
+                                                <h3 itemprop="name">I.R.I.S</h3>
+                                                <div class="project-tech" itemprop="programmingLanguage">SwiftUI • IA • HealthKit</div>
+                                                <p class="project-description" itemprop="description">
+                                                    IRIS est une application de surveillance de santé en temps réel conçue pour détecter les crises d'épilepsie en analysant les données de fréquence cardiaque et de mouvement des montres connectées. Elle fournit des alertes aux utilisateurs et aux soignants.
+                                                </p>
+                                                <div class="project-status">
+                                                    <span class="status-badge">BETA</span>
+                                                    <span class="progress-indicator">100% TERMINÉ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+
+                                    <!-- Project 3 -->
+                                    <article class="project-slide" itemscope itemtype="https://schema.org/SoftwareApplication">
+                                        <div class="project-content">
+                                            <div class="project-image-container">
+                                                <img src="cover.png" alt="Jeu COVER - Interface de puzzle néon avec grille de chemins à résoudre" itemprop="image">
+                                            </div>
+                                            <div class="project-info">
+                                                <h3 itemprop="name">COVER</h3>
+                                                <div class="project-tech" itemprop="programmingLanguage">Flutter • Jeu de logique</div>
+                                                <p class="project-description" itemprop="description">
+                                                    COVER est un jeu de puzzle à thème néon où les joueurs doivent trouver un chemin qui visite chaque point d'une grille exactement une fois, tout en naviguant dans des contraintes de passage spéciales. Alliant logique et stratégie dans un environnement visuellement frappant.
+                                                </p>
+                                                <div class="project-status">
+                                                    <span class="status-badge">ACTIF</span>
+                                                    <span class="progress-indicator">93% TERMINÉ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                                
+                                <button class="carousel-nav carousel-next" onclick="nextProject()" aria-label="Projet suivant">›</button>
+                            </div>
+                            
+                            <div class="carousel-indicators" role="tablist" aria-label="Indicateurs de projets">
+                                <div class="indicator active" onclick="goToProject(0)" role="tab" aria-label="Sudoku Horizon" tabindex="0"></div>
+                                <div class="indicator" onclick="goToProject(1)" role="tab" aria-label="IRIS" tabindex="0"></div>
+                                <div class="indicator" onclick="goToProject(2)" role="tab" aria-label="COVER" tabindex="0"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contact Section -->
+                <section class="section" id="contact" itemscope itemtype="https://schema.org/ContactPage">
+                    <h3 class="section-title">INTERFACE DE CONTACT</h3>
+                    
+                    <div class="contact-grid">
+                        <form class="contact-form card" action="https://formsubmit.co/contact@ludovichorem.com" method="POST" itemscope itemtype="https://schema.org/ContactPoint" role="form" aria-label="Formulaire de contact">
+                            <div class="form-group">
+                                <label class="form-label" for="contact-name">NOM :</label>
+                                <input type="text" name="name" id="contact-name" class="form-input" placeholder="Votre nom..." required aria-required="true">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="contact-email">EMAIL :</label>
+                                <input type="email" name="email" id="contact-email" class="form-input" placeholder="votre.email@domaine.com" required aria-required="true">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="contact-message">MESSAGE :</label>
+                                <textarea id="contact-message" name="message" class="form-textarea" placeholder="Votre message ici..." required aria-required="true"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" onclick="sendMessage()" aria-label="Envoyer le message">ENVOYER MESSAGE</button>
+                        </form>
+                        
+                        <div class="contact-info card" itemscope itemtype="https://schema.org/LocalBusiness">
+                            <div class="contact-item">
+                                <div class="contact-label">EMAIL</div>
+                                <div class="contact-value"><a href="mailto:contact@ludovichorem.com" itemprop="email">contact@ludovichorem.com</a></div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-label">GITHUB</div>
+                                <div class="contact-value"><a target="_blank" rel="noopener" href="https://github.com/LuluHow" itemprop="sameAs">https://github.com/LuluHow</a></div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-label">LINKEDIN</div>
+                                <div class="contact-value"><a href="https://www.linkedin.com/in/ludovichorem" target="_blank" rel="noopener" itemprop="sameAs">https://www.linkedin.com/in/ludovichorem</a></div>
+                            </div>
+                            
+                            <div class="contact-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                                <div class="contact-label">LOCALISATION</div>
+                                <div class="contact-value" itemprop="addressLocality">Sens</div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-label">DISPONIBILITÉ</div>
+                                <div class="contact-value" itemprop="openingHours">24h/24 En ligne</div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-label">TEMPS DE RÉPONSE</div>
+                                <div class="contact-value">< 24 heures</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer fade-in" id="footer" role="contentinfo">
+            <p>© 2025 LUDOVIC HOREM - POWERED BY LOVE AND COFFEE(S)</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==================== GLOBAL VARIABLES ====================
+        const AppState = {
+            audioEnabled: false,
+            currentSection: 'home',
+            synth: null,
+            melodyLoop: null,
+            isTransitioning: false,
+            currentProjectIndex: 0,
+            totalProjects: 3,
+            tvIsOn: false
+        };
+
+        const Config = {
+            notes: [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25],
+            melody: [0, 2, 4, 2, 0, 2, 4, 2, 4, 5, 6, 4, 5, 6, 5, 4, 2, 0, 2, 4, 4, 5, 7, 5, 4, 2, 0, 2, 4, 5, 4, 2, 0],
+            timings: {
+                bootDelay: 3000,
+                moveUpDelay: 1000,
+                initDelay: 300,
+                staggerDelay: 200
+            }
+        };
+
+        // ==================== UTILITY FUNCTIONS ====================
+        const Utils = {
+            delay: (ms) => new Promise(resolve => setTimeout(resolve, ms)),
+            
+            getElement: (id) => document.getElementById(id),
+            
+            getAllElements: (selector) => document.querySelectorAll(selector),
+            
+            addClass: (element, className) => element?.classList.add(className),
+            
+            removeClass: (element, className) => element?.classList.remove(className),
+            
+            toggleClass: (element, className) => element?.classList.toggle(className),
+            
+            setAttributes: (element, attributes) => {
+                Object.entries(attributes).forEach(([key, value]) => {
+                    element.setAttribute(key, value);
+                });
+            }
+        };
+
+        // ==================== AUDIO SYSTEM ====================
+        const AudioSystem = {
+            async enable() {
+                try {
+                    await Tone.start();
+                    AppState.synth = new Tone.Synth({
+                        oscillator: { type: 'square' },
+                        envelope: { attack: 0.01, decay: 0.1, sustain: 0.3, release: 0.2 }
+                    }).toDestination();
+                    
+                    AppState.audioEnabled = true;
+                    Utils.addClass(Utils.getElement('audioBtn'), 'active');
+                    this.startBackgroundMelody();
+                } catch (error) {
+                    console.log('Audio unavailable');
+                }
+            },
+
+            toggle() {
+                if (!AppState.audioEnabled) {
+                    this.enable();
+                } else {
+                    AppState.audioEnabled = false;
+                    Utils.removeClass(Utils.getElement('audioBtn'), 'active');
+                    this.stopBackgroundMelody();
+                }
+            },
+
+            startBackgroundMelody() {
+                if (!AppState.audioEnabled || !AppState.synth) return;
+                
+                let currentNoteIndex = 0;
+                
+                const playNextNote = () => {
+                    if (!AppState.audioEnabled || !AppState.synth) return;
+                    
+                    const noteIndex = Config.melody[currentNoteIndex];
+                    const frequency = Config.notes[noteIndex];
+                    
+                    AppState.synth.triggerAttackRelease(frequency, '4n');
+                    currentNoteIndex = (currentNoteIndex + 1) % Config.melody.length;
+                    AppState.melodyLoop = setTimeout(playNextNote, 500);
+                };
+                
+                playNextNote();
+            },
+
+            stopBackgroundMelody() {
+                if (AppState.melodyLoop) {
+                    clearTimeout(AppState.melodyLoop);
+                    AppState.melodyLoop = null;
+                }
+            },
+
+            playSound(frequency, duration = '32n') {
+                if (AppState.audioEnabled && AppState.synth) {
+                    AppState.synth.triggerAttackRelease(frequency, duration);
+                }
+            }
+        };
+
+        // ==================== BOOT SYSTEM ====================
+        const BootSystem = {
+            async start() {
+                const bootScreen = Utils.getElement('bootScreen');
+                const bootName = Utils.getElement('bootName');
+                const mainScreen = Utils.getElement('mainScreen');
+                
+                await Utils.delay(Config.timings.bootDelay);
+                Utils.addClass(bootName, 'moving-up');
+                
+                await Utils.delay(Config.timings.moveUpDelay);
+                Utils.addClass(bootScreen, 'hidden');
+                Utils.addClass(mainScreen, 'loaded');
+                
+                await Utils.delay(Config.timings.initDelay);
+                await this.initializeSystem();
+            },
+
+            async initializeSystem() {
+                const elements = ['header', 'navigation', 'content', 'footer'];
+                
+                for (let i = 0; i < elements.length; i++) {
+                    await Utils.delay(Config.timings.staggerDelay);
+                    Utils.addClass(Utils.getElement(elements[i]), 'loaded');
+                }
+                
+                // Initialize subsystems
+                Navigation.init();
+                //AudioSystem.enable();
+                this.initializeAnimations();
+            },
+
+            initializeAnimations() {
+                AnimationSystem.animateSkillBars();
+                //AnimationSystem.startTypewriterEffect();
+                ProjectCarousel.init();
+                setTimeout(() => AnimationSystem.animateIcons(), 2000);
+            }
+        };
+
+        // ==================== NAVIGATION SYSTEM ====================
+        const Navigation = {
+            init() {
+                const navItems = Utils.getAllElements('.nav-item');
+                navItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        if (AppState.isTransitioning) return;
+                        
+                        const section = item.dataset.section;
+                        if (section !== AppState.currentSection) {
+                            this.navigateToSection(section);
+                        }
+                    });
+                    
+                    // Ajout du support clavier
+                    item.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            item.click();
+                        }
+                    });
+                });
+            },
+
+            navigateToSection(sectionName) {
+                if (AppState.isTransitioning) return;
+                
+                const navItems = Utils.getAllElements('.nav-item');
+                navItems.forEach(nav => Utils.removeClass(nav, 'active'));
+                
+                const targetNav = document.querySelector(`[data-section="${sectionName}"]`);
+                if (targetNav) Utils.addClass(targetNav, 'active');
+                
+                this.switchSectionWithTransition(sectionName);
+            },
+
+            async switchSectionWithTransition(sectionName) {
+                if (AppState.isTransitioning) return;
+                
+                AppState.isTransitioning = true;
+                const overlay = Utils.getElement('transitionOverlay');
+                const container = Utils.getElement('sectionsContainer');
+                
+                Utils.addClass(overlay, 'active');
+                
+                await Utils.delay(200);
+                
+                Utils.setAttributes(container, { 'data-active': sectionName });
+                AppState.currentSection = sectionName;
+                
+                Utils.removeClass(overlay, 'active');
+                
+                if (sectionName === 'about') {
+                    setTimeout(() => AnimationSystem.animateSkillBars(), 200);
+                }
+                
+                AppState.isTransitioning = false;
+            }
+        };
+
+        // ==================== ANIMATION SYSTEM ====================
+        const AnimationSystem = {
+            animateSkillBars() {
+                const skillFills = Utils.getAllElements('.skill-fill');
+                skillFills.forEach((fill, index) => {
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        const targetWidth = fill.dataset.width;
+                        fill.style.width = targetWidth + '%';
+                    }, index * 100);
+                });
+            },
+
+            startTypewriterEffect() {
+                const heroTitle = document.querySelector('.hero-title');
+                const originalText = "TRANSFORMEZ VOS IDÉES EN RÉALITÉ";
+                let currentText = "";
+                let currentIndex = 0;
+                
+                Utils.addClass(heroTitle, 'typing');
+                heroTitle.textContent = "";
+                
+                const typeNextLetter = () => {
+                    if (currentIndex < originalText.length) {
+                        currentText += originalText[currentIndex];
+                        heroTitle.textContent = currentText;
+                        currentIndex++;
+                        
+                        //AudioSystem.playSound(800);
+                        
+                        const delay = Math.random() * 100 + 50;
+                        setTimeout(typeNextLetter, delay);
+                    } else {
+                        setTimeout(() => {
+                            Utils.removeClass(heroTitle, 'typing');
+                            Utils.addClass(heroTitle, 'typing-complete');
+                        }, 500);
+                    }
+                };
+                
+                setTimeout(typeNextLetter, 800);
+            },
+
+            animateIcons() {
+                const icons = Utils.getAllElements('.benefit-icon');
+                icons.forEach((icon, index) => {
+                    setTimeout(() => {
+                        Utils.addClass(icon, 'loaded');
+                        AudioSystem.playSound(1200 + (index * 200), '16n');
+                    }, index * 200);
+                });
+            }
+        };
+
+        // ==================== PROJECT CAROUSEL ====================
+        const ProjectCarousel = {
+            init() {
+                const carousel = document.querySelector('.project-slides');
+                let startX, startY;
+                
+                carousel.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                }, { passive: true });
+                
+                carousel.addEventListener('touchend', (e) => {
+                    const distX = e.changedTouches[0].clientX - startX;
+                    const distY = e.changedTouches[0].clientY - startY;
+                    
+                    if (Math.abs(distX) > Math.abs(distY) && Math.abs(distX) > 50) {
+                        if (distX > 0) {
+                            this.previousProject();
+                        } else {
+                            this.nextProject();
+                        }
+                    }
+                });
+                
+                // Support clavier pour les indicateurs
+                const indicators = Utils.getAllElements('.indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            this.goToProject(index);
+                        }
+                    });
+                });
+            },
+
+            nextProject() {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = (AppState.currentProjectIndex + 1) % AppState.totalProjects;
+                this.updateDisplay();
+            },
+
+            previousProject() {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = (AppState.currentProjectIndex - 1 + AppState.totalProjects) % AppState.totalProjects;
+                this.updateDisplay();
+            },
+
+            goToProject(index) {
+                if (!AppState.tvIsOn) return;
+                AppState.currentProjectIndex = index;
+                this.updateDisplay();
+            },
+
+            updateDisplay() {
+                const slides = Utils.getAllElements('.project-slide');
+                const indicators = Utils.getAllElements('.indicator');
+                
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === AppState.currentProjectIndex);
+                });
+                
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === AppState.currentProjectIndex);
+                    indicator.setAttribute('aria-selected', index === AppState.currentProjectIndex);
+                });
+            }
+        };
+
+        // ==================== TV SYSTEM ====================
+        const TVSystem = {
+            toggle() {
+                const tvScreen = Utils.getElement('tvScreen');
+                const tvPowerBtn = Utils.getElement('tvPowerBtn');
+                
+                AppState.tvIsOn = !AppState.tvIsOn;
+                
+                if (AppState.tvIsOn) {
+                    Utils.removeClass(tvScreen, 'off');
+                    Utils.addClass(tvPowerBtn, 'on');
+                    tvPowerBtn.setAttribute('aria-pressed', 'true');
+                } else {
+                    Utils.addClass(tvScreen, 'off');
+                    Utils.removeClass(tvPowerBtn, 'on');
+                    tvPowerBtn.setAttribute('aria-pressed', 'false');
+                }
+            }
+        };
+
+        // ==================== EVENT LISTENERS ====================
+        const EventHandlers = {
+            init() {
+                
+                // Enable audio on first interaction
+                //document.addEventListener('click', () => AudioSystem.enable(), { once: true });
+                
+                // Keyboard shortcuts
+                document.addEventListener('keydown', this.handleKeyboard);
+                
+                // Screen saver
+                this.initScreenSaver();
+            },
+
+            handleKeyboard(e) {
+                // Navigation shortcuts
+                if (e.ctrlKey || e.metaKey) {
+                    const shortcuts = {
+                        '1': 'home',
+                        '2': 'about', 
+                        '3': 'projects',
+                        '4': 'contact'
+                    };
+                    
+                    if (shortcuts[e.key]) {
+                        e.preventDefault();
+                        Navigation.navigateToSection(shortcuts[e.key]);
+                    }
+                }
+                
+                // Project navigation
+                if (AppState.currentSection === 'projects' && AppState.tvIsOn) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        ProjectCarousel.previousProject();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        ProjectCarousel.nextProject();
+                    }
+                }
+                
+                // TV toggle
+                if (AppState.currentSection === 'projects' && e.key === ' ') {
+                    e.preventDefault();
+                    TVSystem.toggle();
+                }
+            },
+
+            initScreenSaver() {
+                let inactivityTimer;
+                let isScreenSaver = false;
+
+                const resetTimer = () => {
+                    clearTimeout(inactivityTimer);
+                    if (isScreenSaver) {
+                        isScreenSaver = false;
+                        document.body.style.filter = 'none';
+                    }
+                    
+                    inactivityTimer = setTimeout(() => {
+                        if (!isScreenSaver) {
+                            isScreenSaver = true;
+                            document.body.style.filter = 'brightness(0.3)';
+                        }
+                    }, 30000);
+                };
+
+                let throttleTimer = null;
+                document.addEventListener('mousemove', () => {
+                    if (throttleTimer) return;
+                    throttleTimer = setTimeout(() => {
+                        resetTimer();
+                        throttleTimer = null;
+                    }, 100);
+                });
+                document.addEventListener('keypress', resetTimer);
+                resetTimer();
+            }
+        };
+
+        // ==================== GLOBAL FUNCTIONS ====================
+        function navigateToSection(section) {
+            Navigation.navigateToSection(section);
+        }
+
+        function toggleTV() {
+            TVSystem.toggle();
+        }
+
+        function nextProject() {
+            ProjectCarousel.nextProject();
+        }
+
+        function previousProject() {
+            ProjectCarousel.previousProject();
+        }
+
+        function goToProject(index) {
+            ProjectCarousel.goToProject(index);
+        }
+
+        function sendMessage() {
+            alert('MESSAGE ENVOYÉ !\n\nMerci pour votre message.\nJe répondrai dans les 24 heures.');
+        }
+
+        // ==================== INITIALIZATION ====================
+        document.addEventListener('DOMContentLoaded', async () => {
+            EventHandlers.init();
+            await BootSystem.start();
+        });
+    </script>
+</body>
+</html>
