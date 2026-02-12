@@ -1,0 +1,57 @@
+Privacy Policy
+Last updated: February 12, 2026
+
+This Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
+
+Interpretation and Definitions
+Interpretation
+The words whose initial letters are capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
+
+Definitions
+For the purposes of this Privacy Policy:
+
+Application refers to RAW, the software program provided by the Company.
+
+Company (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to RAW.
+
+Country refers to: France.
+
+Device means any device that can access the Service such as a computer, a cellphone, or a digital tablet.
+
+Service refers to the Application.
+
+You means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.
+
+Collection and Use of Your Personal Data
+No Personal Data Collected
+We are committed to protecting your privacy. We do not collect, store, use, or share any Personal Data or Usage Data from our users.
+
+You can use the Application without creating an account and without providing any personally identifiable information (such as your name, email address, or phone number). The Application does not track your location or your usage behavior.
+
+In-App Purchases
+The Application allows You to purchase digital content or subscriptions ("In-App Purchases").
+
+We do not process or store Your payment information (such as credit card numbers or bank account details). All financial transactions are handled securely by the third-party application store provider from which You downloaded the Application:
+
+Apple App Store: Their privacy policy can be viewed at https://www.apple.com/legal/privacy/en-ww/
+
+
+When You make a purchase, the Store Provider processes the payment and simply notifies our Application whether the transaction was successful so we can unlock the purchased content. We do not receive any of your billing details.
+
+Links to Other Websites
+Our Service may contain links to other websites that are not operated by Us. If You click on a third-party link, You will be directed to that third party's site. We strongly advise You to review the Privacy Policy of every site You visit.
+
+We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+
+Children's Privacy
+Our Service does not address anyone under the age of 13. As We do not collect any personal data, We do not knowingly collect personally identifiable information from anyone, including children under the age of 13.
+
+Changes to this Privacy Policy
+We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.
+
+You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+
+Contact Us
+If you have any questions about this Privacy Policy, You can contact us:
+
+By email: contact@ludovichorem.com
