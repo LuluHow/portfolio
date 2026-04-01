@@ -1,7 +1,6 @@
 {
-  "name": "Ludovic Horem - Développeur",
-  "short_name": "Ludovic Horem",
-  "description": "Développeur Web & Mobile à Sens",
+  "name": "MyWebSite",
+  "short_name": "MySite",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",

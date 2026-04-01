@@ -1,0 +1,7 @@
+# Backups
+*.bckp
+*.bckp*.html
+
+# macOS
+.DS_Store
+favicons/.DS_Store
