@@ -8,12 +8,9 @@
   <meta name="description"
     content="Développeur freelance à Sens. Sites web dès 500€, automatisation dès 89€/mois, outils métiers sur mesure, apps mobiles, visibilité Google." />
 
-  <!-- Canonical & hreflang -->
   <link rel="canonical" href="https://ludovichorem.fr" />
   <link rel="alternate" hreflang="fr-FR" href="https://ludovichorem.fr" />
 
-
-  <!-- Favicon et icons -->
   <link rel="icon" type="image/png" href="favicons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="favicons/favicon.svg" />
   <link rel="shortcut icon" href="favicons/favicon.ico" />
@@ -22,7 +19,6 @@
   <meta name="theme-color" content="#00ff41">
   <meta name="msapplication-TileColor" content="#00ff41">
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Ludovic Horem | Sites Web, Apps, Automatisation & SEO (Sens)" />
   <meta property="og:description"
     content="Développeur freelance à Sens. Sites web dès 500€, automatisation dès 89€/mois, outils métiers sur mesure, apps mobiles, visibilité Google." />
@@ -31,14 +27,12 @@
   <meta property="og:image" content="https://ludovichorem.fr/og-image.jpg" />
   <meta property="og:locale" content="fr_FR" />
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ludovic Horem | Sites Web, Apps, Automatisation & SEO (Sens)" />
   <meta name="twitter:description"
     content="Développeur freelance à Sens. Sites web dès 500€, automatisation dès 89€/mois, outils métiers, apps mobiles." />
   <meta name="twitter:image" content="https://ludovichorem.fr/og-image.jpg" />
 
-  <!-- Schema.org LocalBusiness -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -61,15 +55,16 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
 
   <style>
-    /* VARIABLES & RESET MINIMALISTE */
     :root {
       --bg: #000000;
       --text: #FFFFFF;
       --muted: #888888;
-      --border: #333333;
+      --border: #282828;
+      --accent: #E8951A;
       --font-main: 'Inter', sans-serif;
     }
 
@@ -98,11 +93,11 @@
       color: var(--bg);
     }
 
-    /* TYPOGRAPHIE ARCHITECTURALE */
     .t-massive {
+      font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(3.5rem, 8vw, 9rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
+      font-weight: 400;
+      letter-spacing: 0.02em;
       line-height: 0.95;
       text-transform: uppercase;
     }
@@ -122,7 +117,6 @@
       color: var(--muted);
     }
 
-    /* STRUCTURE & GRILLES */
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -142,7 +136,6 @@
       gap: 60px;
     }
 
-    /* BOUTONS & ELEMENTS UI */
     .btn {
       display: inline-block;
       padding: 24px 48px;
@@ -155,16 +148,18 @@
       text-transform: uppercase;
       border: 1px solid var(--text);
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
 
     .btn:hover {
-      background: transparent;
-      color: var(--text);
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
     }
 
-    /* THÈME INVERSÉ */
     .theme-light {
       --bg: #FFFFFF;
       --text: #000000;
@@ -181,16 +176,23 @@
     }
 
     .theme-light .btn:hover {
-      background: transparent;
+      background: var(--accent);
       color: #000000;
+      border-color: var(--accent);
     }
 
-    /* Cards en section claire */
     .theme-light .service-card {
       background: #F5F5F5;
     }
 
-    /* Carte featured (Automatisation) reste sombre même sur fond clair */
+    .theme-light .service-price {
+      color: #000000;
+    }
+
+    .theme-light .card-label {
+      color: var(--accent);
+    }
+
     .theme-light .service-card.span2 {
       background: #000000;
       color: #FFFFFF;
@@ -205,7 +207,6 @@
       border-color: #444;
     }
 
-    /* NAVIGATION */
     nav {
       position: fixed;
       top: 0;
@@ -227,13 +228,57 @@
       text-transform: uppercase;
     }
 
-    /* HERO SECTION */
     #hero {
       min-height: 95vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding-bottom: 80px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 65, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.022) 1px, transparent 1px);
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: -300px;
+      right: -150px;
+      width: 750px;
+      height: 750px;
+      background: radial-gradient(circle, rgba(0, 255, 65, 0.09) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: heroGlow 5s ease-in-out infinite;
+    }
+
+    @keyframes heroGlow {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.55;
+        transform: scale(1.15);
+      }
+    }
+
+    .hero-content {
       position: relative;
       z-index: 1;
     }
@@ -245,7 +290,11 @@
       color: var(--muted);
     }
 
-    /* Split words pour hero title */
+    #heroTag {
+      color: var(--accent);
+      letter-spacing: 0.12em;
+    }
+
     .word-wrap {
       display: inline-block;
       overflow: hidden;
@@ -256,7 +305,6 @@
       display: inline-block;
     }
 
-    /* ABOUT SECTION */
     #about {
       padding: 200px 0 120px;
       position: relative;
@@ -283,15 +331,19 @@
       justify-content: space-between;
       align-items: center;
       overflow: hidden;
+      transition: padding-left 0.25s ease;
+    }
+
+    .about-list li:hover {
+      padding-left: 8px;
     }
 
     .about-list li span:last-child {
       font-family: monospace;
       font-size: 0.9rem;
-      color: var(--muted);
+      color: var(--accent);
     }
 
-    /* BENTO SECTION */
     #bento {
       padding: 200px 0 120px;
       border-bottom: 1px solid var(--border);
@@ -322,6 +374,11 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 300px;
+      transition: background 0.3s ease;
+    }
+
+    .bento-card:hover {
+      background: #080808;
     }
 
     .bento-card.large {
@@ -330,7 +387,7 @@
 
     .card-label {
       font-size: 0.75rem;
-      color: var(--muted);
+      color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
       margin-bottom: 40px;
@@ -355,7 +412,6 @@
       font-weight: bold;
     }
 
-    /* GUARANTEE BANNER */
     #guarantee {
       padding: 160px 0 80px;
       text-align: center;
@@ -365,7 +421,6 @@
       margin-top: -80px;
     }
 
-    /* Reveal line pour guarantee */
     .guarantee-line {
       width: 0;
       height: 1px;
@@ -373,7 +428,6 @@
       margin: 40px auto 0;
     }
 
-    /* FORM SECTION */
     #contact {
       padding: 230px 0 150px;
       position: relative;
@@ -404,7 +458,7 @@
 
     .form-control:focus {
       outline: none;
-      border-color: var(--text);
+      border-color: var(--accent);
     }
 
     textarea.form-control {
@@ -441,8 +495,8 @@
       letter-spacing: 0.05em;
     }
 
-    /* État initial des éléments animés au chargement */
     #heroTag,
+    #heroTitle,
     #heroManifesto,
     #heroCta {
       opacity: 0;
@@ -452,7 +506,6 @@
       transform: translateY(24px);
     }
 
-    /* Curseur personnalisé (bonus) */
     .cursor-dot {
       position: fixed;
       width: 6px;
@@ -465,7 +518,6 @@
       transform: translate(-50%, -50%);
     }
 
-    /* SERVICES SECTION */
     #services {
       padding: 120px 0 160px;
       position: relative;
@@ -491,13 +543,18 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 280px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(0, 255, 65, 0.25);
+      box-shadow: 0 0 40px rgba(0, 255, 65, 0.04);
     }
 
     .service-card.span2 {
       grid-column: span 2;
     }
 
-    /* Cascade décalée */
     .service-card:nth-child(2) {
       margin-top: 60px;
     }
@@ -530,6 +587,7 @@
       letter-spacing: -0.03em;
       line-height: 1;
       white-space: nowrap;
+      color: var(--accent);
     }
 
     .service-cta {
@@ -539,18 +597,18 @@
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--text);
+      color: var(--muted);
       text-decoration: none;
       border-bottom: 1px solid var(--border);
       padding-bottom: 3px;
-      transition: border-color 0.2s ease;
+      transition: color 0.2s ease, border-color 0.2s ease;
     }
 
     .service-cta:hover {
-      border-color: var(--text);
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1000px) {
 
       .grid-asymmetric,
@@ -567,14 +625,12 @@
         grid-column: span 1;
       }
 
-      /* Pas de stagger sur mobile */
       .service-card:nth-child(2),
       .service-card:nth-child(3),
       .service-card:nth-child(5) {
         margin-top: 0;
       }
 
-      /* Pas d'overlap sur mobile */
       #about,
       #guarantee,
       #bento,
@@ -617,7 +673,6 @@
 
 <body>
 
-  <!-- Curseur personnalisé -->
   <div class="cursor-dot" id="cursorDot"></div>
 
   <nav id="mainNav">
@@ -627,7 +682,6 @@
 
   <main>
 
-    <!-- HERO -->
     <section id="hero" class="container">
       <div class="hero-content">
         <div class="grid-asymmetric">
@@ -650,7 +704,6 @@
       </div>
     </section>
 
-    <!-- SERVICES & TARIFS -->
     <section id="services" class="theme-light">
       <div class="container">
         <div class="services-header">
@@ -661,7 +714,6 @@
 
         <div class="services-grid" id="servicesGrid">
 
-          <!-- Site web -->
           <div class="service-card gs-scard">
             <div>
               <div class="card-label">01</div>
@@ -675,7 +727,6 @@
             </div>
           </div>
 
-          <!-- Outils métiers -->
           <div class="service-card gs-scard">
             <div>
               <div class="card-label">02</div>
@@ -689,7 +740,6 @@
             </div>
           </div>
 
-          <!-- Applications mobiles -->
           <div class="service-card gs-scard">
             <div>
               <div class="card-label">03</div>
@@ -703,7 +753,6 @@
             </div>
           </div>
 
-          <!-- Visibilité internet -->
           <div class="service-card gs-scard">
             <div>
               <div class="card-label">04</div>
@@ -717,7 +766,6 @@
             </div>
           </div>
 
-          <!-- Automatisation -->
           <div class="service-card span2 gs-scard" style="background: #050505;">
             <div>
               <div class="card-label">05</div>
@@ -735,7 +783,6 @@
       </div>
     </section>
 
-    <!-- ABOUT / L'OFFRE CLÉ EN MAIN -->
     <section id="about">
       <div class="container">
         <div class="grid-asymmetric">
@@ -771,7 +818,6 @@
       </div>
     </section>
 
-    <!-- BANNIÈRE GARANTIE -->
     <section id="guarantee" class="theme-light">
       <div class="container">
         <span class="t-micro gs-fadeup" style="color: var(--text);">Ma Garantie</span>
@@ -784,7 +830,6 @@
       </div>
     </section>
 
-    <!-- MICRO-PREUVES (BENTO) -->
     <section id="bento">
       <div class="container">
         <div class="bento-header">
@@ -792,7 +837,6 @@
         </div>
 
         <div class="bento-grid" id="bentoGrid">
-          <!-- Carte 1 -->
           <div class="bento-card gs-card">
             <div class="card-label">01 / Site web</div>
             <div class="card-content">
@@ -804,7 +848,6 @@
             </div>
           </div>
 
-          <!-- Carte 2 -->
           <div class="bento-card gs-card">
             <div class="card-label">02 / Automatisation</div>
             <div class="card-content">
@@ -816,7 +859,6 @@
             </div>
           </div>
 
-          <!-- Carte 3 -->
           <div class="bento-card gs-card">
             <div class="card-label">03 / App mobile</div>
             <div class="card-content">
@@ -828,7 +870,6 @@
             </div>
           </div>
 
-          <!-- Carte 4 (Large) — compteur animé -->
           <div class="bento-card large gs-card" style="background: #050505;">
             <div class="card-label">Le vrai résultat</div>
             <div class="card-content">
@@ -838,7 +879,6 @@
             </div>
           </div>
 
-          <!-- Carte 5 -->
           <div class="bento-card gs-card">
             <div class="card-label">Outil métier sur mesure</div>
             <div class="card-content">
@@ -856,7 +896,6 @@
       </div>
     </section>
 
-    <!-- FORMULAIRE -->
     <section id="contact" class="theme-light">
       <div class="container grid-2">
         <div>
@@ -908,275 +947,14 @@
     <div>Hébergement Inclus & Sécurisé</div>
   </footer>
 
-  <!-- GSAP + ScrollTrigger CDN -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <script>
-    gsap.registerPlugin(ScrollTrigger);
-
-    /* ─── UTILITAIRES ─── */
-
-    // Découpe un texte en spans par mot pour des animations mot à mot
-    function splitWords(el) {
-      const html = el.innerHTML;
-      // Garde les <br> intacts, découpe le reste mot par mot
-      const parts = html.split(/(<br\s*\/?>)/gi);
-      el.innerHTML = parts.map(part => {
-        if (/^<br/i.test(part)) return part;
-        return part.split(/\s+/).filter(Boolean).map(word =>
-          `<span class="word-wrap"><span class="word-inner">${word}</span></span>`
-        ).join(' ');
-      }).join('');
-      return el.querySelectorAll('.word-inner');
-    }
-
-    /* ─── CURSEUR ─── */
-    const dot = document.getElementById('cursorDot');
-    document.addEventListener('mousemove', e => {
-      gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.15, ease: 'power2.out' });
-    });
-
-    /* ─── NAV ─── */
-    gsap.from('#mainNav', {
-      y: -20,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      delay: 0.2
-    });
-
-    /* ─── HERO : entrée au chargement ─── */
-    const heroWords = splitWords(document.getElementById('heroTitle'));
-
-    // État initial des mots (opacity:0 CSS couvre heroTag/Manifesto/heroCta, mais les spans sont nouveaux)
-    gsap.set(heroWords, { y: '110%', opacity: 0 });
-
-    const heroTl = gsap.timeline({ defaults: { ease: 'power4.out' } });
-
-    // gsap.to() : états initiaux posés en CSS + gsap.set(), GSAP anime uniquement vers le visible
-    heroTl
-      .to('#heroTag', { opacity: 1, duration: 0.6 })
-      .to(heroWords, { y: '0%', opacity: 1, duration: 0.9, stagger: 0.06 }, '-=0.2')
-      .to('#heroManifesto', { opacity: 1, duration: 0.7 }, '-=0.4');
-
-    // CTA séparé — délai calé après la fin du titre
-    gsap.to('#heroCta', { opacity: 1, y: 0, duration: 0.7, ease: 'power4.out', delay: 1.2 });
-
-    /* ─── HELPER : fadeup générique au scroll ─── */
-    function fadeUp(targets, options = {}) {
-      const defaults = {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: options.stagger || 0,
-      };
-      gsap.from(targets, {
-        ...defaults,
-        ...options,
-        scrollTrigger: {
-          trigger: typeof targets === 'string' ? targets : targets[0],
-          start: 'top 88%',
-          ...(options.scrollTrigger || {}),
-        }
-      });
-    }
-
-    /* ─── SERVICES : header + cartes ─── */
-    document.querySelectorAll('#services .gs-fadeup').forEach(el => {
-      gsap.from(el, {
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    gsap.from('.gs-scard', {
-      y: 60,
-      opacity: 0,
-      scale: 0.97,
-      duration: 0.7,
-      stagger: 0.08,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '#servicesGrid', start: 'top 82%' }
-    });
-
-    /* ─── ABOUT : fade up staggeré ─── */
-    document.querySelectorAll('#about .gs-fadeup').forEach(el => {
-      gsap.from(el, {
-        y: 50,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    // Liste about : chaque ligne glisse depuis le bas
-    gsap.from('#aboutList li', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '#aboutList', start: 'top 85%' }
-    });
-
-    /* ─── GUARANTEE ─── */
-    document.querySelectorAll('#guarantee .gs-fadeup').forEach(el => {
-      gsap.from(el, {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    // Titre "Paiement au résultat" — scale + fade
-    gsap.from('#guarantee .gs-scale', {
-      scale: 0.88,
-      opacity: 0,
-      duration: 1,
-      ease: 'expo.out',
-      scrollTrigger: { trigger: '#guarantee .gs-scale', start: 'top 85%' }
-    });
-
-    // Ligne de séparation qui s'étire
-    gsap.to('#guaranteeLine', {
-      width: '100%',
-      duration: 1.2,
-      ease: 'power3.inOut',
-      scrollTrigger: { trigger: '#guaranteeLine', start: 'top 90%' }
-    });
-
-    /* ─── BENTO : cartes en cascade ─── */
-    gsap.from('#bento .gs-fadeup', {
-      y: 40,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '#bento .gs-fadeup', start: 'top 88%' }
-    });
-
-    gsap.from('.gs-card', {
-      y: 60,
-      opacity: 0,
-      scale: 0.96,
-      duration: 0.7,
-      stagger: 0.1,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '#bentoGrid', start: 'top 82%' }
-    });
-
-    /* ─── COMPTEUR +20h ─── */
-    ScrollTrigger.create({
-      trigger: '#counterHours',
-      start: 'top 85%',
-      once: true,
-      onEnter: () => {
-        gsap.to({ val: 0 }, {
-          val: 20,
-          duration: 1.4,
-          ease: 'power2.out',
-          onUpdate: function () {
-            document.getElementById('counterHours').textContent = Math.round(this.targets()[0].val);
-          }
-        });
-      }
-    });
-
-    /* ─── CONTACT : texte + champs ─── */
-    document.querySelectorAll('#contact .gs-fadeup').forEach(el => {
-      gsap.from(el, {
-        y: 50,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
-      });
-    });
-
-    gsap.from('.gs-field', {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
-      ease: 'power3.out',
-      immediateRender: false, // évite de mettre opacity:0 avant que le trigger ne soit atteint
-      scrollTrigger: { trigger: '#contactFormWrap', start: 'top 85%' }
-    });
-
-    /* ─── FOOTER ─── */
-    gsap.from('#siteFooter', {
-      opacity: 0,
-      y: 20,
-      duration: 0.8,
-      ease: 'power3.out',
-      scrollTrigger: { trigger: '#siteFooter', start: 'top 95%' }
-    });
-
-    /* ─── PARALLAXE SUBTIL SUR LE HERO MANIFESTO ─── */
-    gsap.to('#heroManifesto', {
-      y: -40,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1,
-      }
-    });
-
+    function splitWords(r) { const t = r.innerHTML.split(/(<br\s*\/?>)/gi); return r.innerHTML = t.map((r => /^<br/i.test(r) ? r : r.split(/\s+/).filter(Boolean).map((r => `<span class="word-wrap"><span class="word-inner">${r}</span></span>`)).join(" "))).join(""), r.querySelectorAll(".word-inner") } gsap.registerPlugin(ScrollTrigger); const dot = document.getElementById("cursorDot"); document.addEventListener("mousemove", (r => { gsap.to(dot, { x: r.clientX, y: r.clientY, duration: .15, ease: "power2.out" }) })), gsap.from("#mainNav", { y: -20, opacity: 0, duration: 1, ease: "power3.out", delay: .2 }); const heroWords = splitWords(document.getElementById("heroTitle")); gsap.set("#heroTitle", { opacity: 1 }), gsap.set(heroWords, { y: "110%", opacity: 0 }); const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } }); function fadeUp(r, t = {}) { const e = { y: 40, opacity: 0, duration: .8, ease: "power3.out", stagger: t.stagger || 0 }; gsap.from(r, { ...e, ...t, scrollTrigger: { trigger: "string" == typeof r ? r : r[0], start: "top 88%", ...t.scrollTrigger || {} } }) } heroTl.to("#heroTag", { opacity: 1, duration: .6 }).to(heroWords, { y: "0%", opacity: 1, duration: .9, stagger: .06 }, "-=0.2").to("#heroManifesto", { opacity: 1, duration: .7 }, "-=0.4"), gsap.to("#heroCta", { opacity: 1, y: 0, duration: .7, ease: "power4.out", delay: 1.2 }), document.querySelectorAll("#services .gs-fadeup").forEach((r => { gsap.from(r, { y: 40, opacity: 0, duration: .8, ease: "power3.out", scrollTrigger: { trigger: r, start: "top 88%" } }) })), gsap.from(".gs-scard", { y: 60, opacity: 0, scale: .97, duration: .7, stagger: .08, ease: "power3.out", scrollTrigger: { trigger: "#servicesGrid", start: "top 82%" } }), document.querySelectorAll("#about .gs-fadeup").forEach((r => { gsap.from(r, { y: 50, opacity: 0, duration: .9, ease: "power3.out", scrollTrigger: { trigger: r, start: "top 88%" } }) })), gsap.from("#aboutList li", { y: 30, opacity: 0, duration: .6, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: "#aboutList", start: "top 85%" } }), document.querySelectorAll("#guarantee .gs-fadeup").forEach((r => { gsap.from(r, { y: 30, opacity: 0, duration: .8, ease: "power3.out", scrollTrigger: { trigger: r, start: "top 88%" } }) })), gsap.from("#guarantee .gs-scale", { scale: .88, opacity: 0, duration: 1, ease: "expo.out", scrollTrigger: { trigger: "#guarantee .gs-scale", start: "top 85%" } }), gsap.to("#guaranteeLine", { width: "100%", duration: 1.2, ease: "power3.inOut", scrollTrigger: { trigger: "#guaranteeLine", start: "top 90%" } }), gsap.from("#bento .gs-fadeup", { y: 40, opacity: 0, duration: .8, ease: "power3.out", scrollTrigger: { trigger: "#bento .gs-fadeup", start: "top 88%" } }), gsap.from(".gs-card", { y: 60, opacity: 0, scale: .96, duration: .7, stagger: .1, ease: "power3.out", scrollTrigger: { trigger: "#bentoGrid", start: "top 82%" } }), ScrollTrigger.create({ trigger: "#counterHours", start: "top 85%", once: !0, onEnter: () => { gsap.to({ val: 0 }, { val: 20, duration: 1.4, ease: "power2.out", onUpdate: function () { document.getElementById("counterHours").textContent = Math.round(this.targets()[0].val) } }) } }), document.querySelectorAll("#contact .gs-fadeup").forEach((r => { gsap.from(r, { y: 50, opacity: 0, duration: .9, ease: "power3.out", scrollTrigger: { trigger: r, start: "top 88%" } }) })), gsap.from(".gs-field", { y: 30, opacity: 0, duration: .6, stagger: .1, ease: "power3.out", immediateRender: !1, scrollTrigger: { trigger: "#contactFormWrap", start: "top 85%" } }), gsap.from("#siteFooter", { opacity: 0, y: 20, duration: .8, ease: "power3.out", scrollTrigger: { trigger: "#siteFooter", start: "top 95%" } }), gsap.to("#heroManifesto", { y: -40, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1 } });
   </script>
-
-  <!-- SCRIPT DU FORMULAIRE WEBHOOK -->
   <script>
-    const N8N_WEBHOOK_URL = 'https://n8n.ludovichorem.com/webhook/99437937-83a3-4ab7-af1e-d04ee4a85248';
-
-    document.getElementById('contactForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-      const btn = document.getElementById('formSubmit');
-      const successEl = document.getElementById('formSuccess');
-      const errorEl = document.getElementById('formError');
-
-      successEl.style.display = 'none';
-      errorEl.style.display = 'none';
-
-      const originalText = btn.innerText;
-      btn.innerText = 'ENVOI EN COURS...';
-      btn.disabled = true;
-
-      try {
-        const data = {
-          name: document.getElementById('name').value.trim(),
-          email: document.getElementById('email').value.trim(),
-          context: document.getElementById('context').value.trim(),
-          source: 'ludovichorem.fr (V9 GSAP)',
-          timestamp: new Date().toISOString(),
-        };
-        const res = await fetch(N8N_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-
-        if (res.ok) {
-          successEl.style.display = 'block';
-          document.getElementById('contactForm').reset();
-        } else {
-          throw new Error('HTTP ' + res.status);
-        }
-      } catch (err) {
-        errorEl.style.display = 'block';
-      } finally {
-        btn.innerText = originalText;
-        btn.disabled = false;
-      }
-    });
+    const N8N_WEBHOOK_URL = "https://n8n.ludovichorem.com/webhook/99437937-83a3-4ab7-af1e-d04ee4a85248"; document.getElementById("contactForm").addEventListener("submit", (async function (e) { e.preventDefault(); const t = document.getElementById("formSubmit"), n = document.getElementById("formSuccess"), o = document.getElementById("formError"); n.style.display = "none", o.style.display = "none"; const m = t.innerText; t.innerText = "ENVOI EN COURS...", t.disabled = !0; try { const e = { name: document.getElementById("name").value.trim(), email: document.getElementById("email").value.trim(), context: document.getElementById("context").value.trim(), source: "ludovichorem.fr (V9 GSAP)", timestamp: (new Date).toISOString() }, t = await fetch(N8N_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(e) }); if (!t.ok) throw new Error("HTTP " + t.status); n.style.display = "block", document.getElementById("contactForm").reset() } catch (e) { o.style.display = "block" } finally { t.innerText = m, t.disabled = !1 } }));
   </script>
 </body>
 
